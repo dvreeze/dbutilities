@@ -78,6 +78,12 @@ public class GetTableColumnsMetaData implements ConnectionToJsonObjectFunction {
                                     .add("nullable", Optional.ofNullable(rs.getString("NULLABLE"))
                                             .map(Integer::parseInt).map(v -> (JsonValue) jsonProvider.createValue(v)).orElse(JsonValue.NULL))
                                     .add(
+                                            "remarks",
+                                            Optional.ofNullable(rs.getString("REMARKS"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
+                                                    .orElse(JsonValue.NULL)
+                                    )
+                                    .add(
                                             "columnDef",
                                             Optional.ofNullable(rs.getString("COLUMN_DEF"))
                                                     .map(v -> (JsonValue) jsonProvider.createValue(v))
@@ -93,6 +99,7 @@ public class GetTableColumnsMetaData implements ConnectionToJsonObjectFunction {
                     );
                 }
                 return jsonProvider.createObjectBuilder()
+                        .add("table", tableName)
                         .add("columns", tablesJsonArr)
                         .build();
             }

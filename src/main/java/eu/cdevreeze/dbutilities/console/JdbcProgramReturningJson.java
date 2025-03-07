@@ -86,7 +86,7 @@ public class JdbcProgramReturningJson {
 
             ConnectionToJsonObjectFunction function = functionFactoryInstance.get().apply(factoryArgs);
 
-            // Do the actual work within a JMSContext
+            // Do the actual work within a JDBC Connection
             JsonObject result;
             try (Connection conn = dataSourceInstance.get().getConnection()) {
                 result = function.apply(conn);

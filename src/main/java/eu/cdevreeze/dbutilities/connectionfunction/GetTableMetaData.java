@@ -69,6 +69,12 @@ public class GetTableMetaData implements ConnectionToJsonObjectFunction {
                                     .add("tableName", rs.getString("TABLE_NAME"))
                                     .add("tableType", rs.getString("TABLE_TYPE"))
                                     .add(
+                                            "remarks",
+                                            Optional.ofNullable(rs.getString("REMARKS"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
+                                                    .orElse(JsonValue.NULL)
+                                    )
+                                    .add(
                                             "typeCat",
                                             Optional.ofNullable(rs.getString("TYPE_CAT"))
                                                     .map(v -> (JsonValue) jsonProvider.createValue(v))
