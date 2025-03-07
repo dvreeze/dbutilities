@@ -56,12 +56,14 @@ public class GetTableColumnsMetaData implements ConnectionToJsonObjectFunction {
                             jsonProvider.createObjectBuilder()
                                     .add(
                                             "tableCat",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TABLE_CAT")))
+                                            Optional.ofNullable(rs.getString("TABLE_CAT"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add(
                                             "tableSchema",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TABLE_SCHEM")))
+                                            Optional.ofNullable(rs.getString("TABLE_SCHEM"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add("tableName", rs.getString("TABLE_NAME"))
@@ -76,13 +78,9 @@ public class GetTableColumnsMetaData implements ConnectionToJsonObjectFunction {
                                     .add("nullable", Optional.ofNullable(rs.getString("NULLABLE"))
                                             .map(Integer::parseInt).map(v -> (JsonValue) jsonProvider.createValue(v)).orElse(JsonValue.NULL))
                                     .add(
-                                            "remarks",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("REMARKS")))
-                                                    .orElse(JsonValue.NULL)
-                                    )
-                                    .add(
                                             "columnDef",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("COLUMN_DEF")))
+                                            Optional.ofNullable(rs.getString("COLUMN_DEF"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add("charOctetLength", Optional.ofNullable(rs.getString("CHAR_OCTET_LENGTH"))

@@ -56,44 +56,46 @@ public class GetTableMetaData implements ConnectionToJsonObjectFunction {
                             jsonProvider.createObjectBuilder()
                                     .add(
                                             "tableCat",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TABLE_CAT")))
+                                            Optional.ofNullable(rs.getString("TABLE_CAT"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add(
                                             "tableSchema",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TABLE_SCHEM")))
+                                            Optional.ofNullable(rs.getString("TABLE_SCHEM"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add("tableName", rs.getString("TABLE_NAME"))
                                     .add("tableType", rs.getString("TABLE_TYPE"))
                                     .add(
-                                            "remarks",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("REMARKS")))
-                                                    .orElse(JsonValue.NULL)
-                                    )
-                                    .add(
                                             "typeCat",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TYPE_CAT")))
+                                            Optional.ofNullable(rs.getString("TYPE_CAT"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add(
                                             "typeSchema",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TYPE_SCHEM")))
+                                            Optional.ofNullable(rs.getString("TYPE_SCHEM"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add(
                                             "typeName",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("TYPE_NAME")))
+                                            Optional.ofNullable(rs.getString("TYPE_NAME"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add(
                                             "selfReferencingColName",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("SELF_REFERENCING_COL_NAME")))
+                                            Optional.ofNullable(rs.getString("SELF_REFERENCING_COL_NAME"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                                     .add(
                                             "refGeneration",
-                                            Optional.ofNullable((JsonValue) jsonProvider.createValue(rs.getString("REF_GENERATION")))
+                                            Optional.ofNullable(rs.getString("REF_GENERATION"))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
                     );
