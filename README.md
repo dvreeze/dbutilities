@@ -173,8 +173,7 @@ sqlplus / as sysdba
 
 # Inside sqlplus in the container
 
-select substr(table_name, 1, 10) as tablename, substr(tablespace_name, 1, 10) as tablespacename
-  from user_tables;
+select table_name, tablespace_name from user_tables;
 
 # ...
 
