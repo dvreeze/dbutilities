@@ -17,13 +17,16 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Nodes;
 
+import javax.xml.namespace.QName;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -57,10 +60,20 @@ public class SelectAllFromTableAsXml implements ConnectionToElementFunction {
                     IntStream.rangeClosed(1, rsMetaData.getColumnCount())
                             .forEach(i -> {
                                 try {
+                                    String columnValue = rs.getString(i);
                                     columns.add(
                                             elem(rsMetaData.getColumnLabel(i))
+                                                    .withAttributes(
+                                                            ImmutableMap.of(new QName("null"), "true")
+                                                                    .entrySet()
+                                                                    .stream()
+                                                                    .filter(ignored -> columnValue == null)
+                                                                    .collect(
+                                                                            ImmutableMap.toImmutableMap(Map.Entry::getKey, Map.Entry::getValue)
+                                                                    )
+                                                    )
                                                     .plusChildOption(
-                                                            Optional.ofNullable(rs.getString(i))
+                                                            Optional.ofNullable(columnValue)
                                                                     .map(Nodes::text)
                                                     )
                                     );
