@@ -50,9 +50,9 @@ public class GetTableColumnsMetaData implements ConnectionToJsonObjectFunction {
         try {
             DatabaseMetaData dbMetaData = connection.getMetaData();
             try (ResultSet rs = dbMetaData.getColumns(null, null, tableName, null)) {
-                JsonArrayBuilder tablesJsonArr = jsonProvider.createArrayBuilder();
+                JsonArrayBuilder columnsJsonArr = jsonProvider.createArrayBuilder();
                 while (rs.next()) {
-                    tablesJsonArr.add(
+                    columnsJsonArr.add(
                             jsonProvider.createObjectBuilder()
                                     .add(
                                             "tableCat",
@@ -100,7 +100,7 @@ public class GetTableColumnsMetaData implements ConnectionToJsonObjectFunction {
                 }
                 return jsonProvider.createObjectBuilder()
                         .add("table", tableName)
-                        .add("columns", tablesJsonArr)
+                        .add("columns", columnsJsonArr)
                         .build();
             }
         } catch (SQLException e) {
