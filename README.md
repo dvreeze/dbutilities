@@ -90,7 +90,7 @@ See [Db2 with Docker](https://www.ibm.com/docs/en/db2/11.5?topic=deployments-db2
 Also see [Db2 CE with Docker on Linux](https://www.ibm.com/docs/en/db2/12.1?topic=system-linux).
 Follow the steps described in the latter article.
 
-Running the Db2 container (also mentioned in that article, but slightly adapted):
+Running the Db2 container (also mentioned in that article, but slightly adapted, e.g. no "restart"):
 
 ```shell
 mkdir ~/db2data
@@ -98,7 +98,7 @@ mkdir ~/db2data
 docker run -d \
   -h db2server \
   --name db2server \
-  --restart=always \
+  --restart=no \
   --privileged=true \
   -p 50000:50000 \
   --env-file .env_list \
@@ -138,6 +138,89 @@ exit
 
 See [Db2 quick guide](https://www.tutorialspoint.com/db2/db2_quick_guide.htm) for the Db2 CLI.
 Note that commands starting with "db2" should be entered without "db2" in front of them when inside
-the db2 CLI.
+the db2 CLI. More specifically, as described [here](https://www.tutorialspoint.com/db2/db2_server_installation.htm)
+(at the end), the Command Line Processor (CLP) can be started in one of three modes. In the example
+session above, the interactive mode of "db2" was used.
+
+### Oracle with Docker
+
+See [Oracle Database 23ai Free](https://medium.com/@anders.swanson.93/oracle-database-23ai-free-11abf827ab37).
+Also see this [Oracle database tutorial](https://www.oracletutorial.com/).
+
+In particular,
+see [create Oracle sample database](https://www.oracletutorial.com/getting-started/create-oracle-sample-database-for-practice/)
+for instructions on how to create the sample database from [Oracle database tutorial](https://www.oracletutorial.com/).
+
+Steps:
+
+```shell
+docker pull gvenzl/oracle-free:23.6-slim-faststart
+
+docker volume create oracle-volume
+
+docker run -d \
+  --name oracledb \
+  -p 1521:1521 \
+  -e ORACLE_PASSWORD=testpassword \
+  -v oracle-volume:/opt/oracle/oradata \
+  gvenzl/oracle-free:23.6-slim-faststart
+
+docker exec -it oracledb bash
+
+# Inside the oracledb container
+
+sqlplus / as sysdba
+
+# Inside sqlplus in the container
+
+select substr(table_name, 1, 10) as tablename, substr(tablespace_name, 1, 10) as tablespacename
+  from user_tables;
+
+# ...
+
+quit
+exit
+
+# It is time to create the sample database
+# See https://www.oracletutorial.com/getting-started/create-oracle-sample-database-for-practice/
+
+# First cd to the root of this project. Then:
+
+docker cp data/oracle/ot_create_user.sql oracledb:/tmp
+docker cp data/oracle/ot_schema.sql oracledb:/tmp
+docker cp data/oracle/ot_data.sql oracledb:/tmp
+docker cp data/oracle/ot_drop.sql oracledb:/tmp
+
+docker exec -it oracledb bash
+sqlplus / as sysdba
+
+# Inside sqlplus inside the container again
+
+show con_name;
+
+# FREEPDB1 is the default pluggable database in this Oracle Docker container
+alter session set container = FREEPDB1;
+# Check that this pluggable database has been selected
+show con_name;
+
+# No need to execute command "alter database open" here
+
+@/tmp/ot_create_user.sql
+
+connect ot@FREEPDB1;
+
+@/tmp/ot_schema.sql
+@/tmp/ot_data.sql
+
+# We can see the created tables now
+SELECT table_name FROM user_tables ORDER BY table_name;
+
+exit
+exit
+```
+
+See [fix ora-12505](https://www.atlassian.com/data/databases/how-to-fix-ora-12505-tns-listener-does-not-currently-know-of-sid-given-in-connect-descriptor)
+in case of ORA-12505 errors. Also see
+[connecting to CDB and PDB](https://oracle-base.com/articles/12c/multitenant-connecting-to-cdb-and-pdb-12cr1).
 
 ## Reference material
