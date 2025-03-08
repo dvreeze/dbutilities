@@ -16,36 +16,35 @@
 
 package eu.cdevreeze.dbutilities.datasource;
 
+import com.ibm.db2.jcc.DB2SimpleDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Named;
 import org.eclipse.microprofile.config.Config;
-import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
 
 /**
- * CDI-injectable Postgresql {@link DataSource}.
+ * CDI-injectable Db2 {@link DataSource}.
  *
  * @author Chris de Vreeze
  */
 @ApplicationScoped
-public class PostgresqlDataSources {
+public class Db2DataSources {
 
     @Produces
-    @Named("postgresql")
+    @Named("db2")
     @ApplicationScoped
     public DataSource getDataSource(Config config) {
-        var dataSource = new PGSimpleDataSource();
+        var dataSource = new DB2SimpleDataSource();
 
-        dataSource.setServerNames(new String[]{config.getValue("postgresql.serverName", String.class)});
-        dataSource.setPortNumbers(new int[]{config.getValue("postgresql.portNumber", Integer.class)});
-        dataSource.setDatabaseName(config.getValue("postgresql.databaseName", String.class));
-        dataSource.setUser(config.getValue("postgresql.user", String.class));
-        dataSource.setPassword(config.getValue("postgresql.password", String.class));
-        dataSource.setSsl(config.getValue("postgresql.ssl", Boolean.class));
-        config.getOptionalValue("postgresql.sslfactory", String.class)
-                .ifPresent(dataSource::setSslfactory);
+        dataSource.setDriverType(config.getValue("db2.driverType", Integer.class));
+        dataSource.setServerName(config.getValue("db2.serverName", String.class));
+        dataSource.setPortNumber(config.getValue("db2.portNumber", Integer.class));
+        dataSource.setCurrentSchema(config.getValue("db2.currentSchema", String.class));
+        dataSource.setDatabaseName(config.getValue("db2.databaseName", String.class));
+        dataSource.setUser(config.getValue("db2.user", String.class));
+        dataSource.setPassword(config.getValue("db2.password", String.class));
 
         return dataSource;
     }

@@ -82,6 +82,11 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.ibm.db2</groupId>
+            <artifactId>jcc</artifactId>
+            <version>12.1.0.0</version>
+        </dependency>
         <!-- Scope runtime -->
         <dependency>
             <groupId>org.eclipse.parsson</groupId>

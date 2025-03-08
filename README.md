@@ -84,4 +84,60 @@ exit
 # We have left the running postgres container again
 ```
 
+### Db2 with Docker
+
+See [Db2 with Docker](https://www.ibm.com/docs/en/db2/11.5?topic=deployments-db2-community-edition-docker).
+Also see [Db2 CE with Docker on Linux](https://www.ibm.com/docs/en/db2/12.1?topic=system-linux).
+Follow the steps described in the latter article.
+
+Running the Db2 container (also mentioned in that article, but slightly adapted):
+
+```shell
+mkdir ~/db2data
+
+docker run -d \
+  -h db2server \
+  --name db2server \
+  --restart=always \
+  --privileged=true \
+  -p 50000:50000 \
+  --env-file .env_list \
+  -v ~/db2data:/database \
+  icr.io/db2_community/db2
+```
+
+For a sample database, see
+[Db2 sample database](https://www.ibm.com/docs/en/db2/12.1?topic=samples-sample-database).
+
+Use the Db2 CLI:
+
+```shell
+docker exec -ti db2server bash -c "su - db2inst1"
+
+# Inside the db2server container
+
+db2
+
+# Inside db2 CLI inside container
+# Get help on commands
+?
+
+list database directory
+
+connect to SAMPLE
+
+select tabname, tabschema, tbspace from syscat.tables
+
+describe table dept
+
+# ...
+
+quit
+exit
+```
+
+See [Db2 quick guide](https://www.tutorialspoint.com/db2/db2_quick_guide.htm) for the Db2 CLI.
+Note that commands starting with "db2" should be entered without "db2" in front of them when inside
+the db2 CLI.
+
 ## Reference material
