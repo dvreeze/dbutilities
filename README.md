@@ -26,6 +26,7 @@ on setting up PostgreSQL Docker containers. Also see
 
 Here we "install" PostgreSQL as a Docker container, and populate it with this
 [sample database](https://neon.tech/postgresql/postgresql-getting-started/postgresql-sample-database).
+Many thanks to [neon.tech](https://neon.tech/) for this sample database.
 
 Steps:
 
@@ -108,6 +109,7 @@ docker run -d \
 
 For a sample database, see
 [Db2 sample database](https://www.ibm.com/docs/en/db2/12.1?topic=samples-sample-database).
+Many thanks to [ibm.com](https://www.ibm.com) for this sample database.
 
 Use the Db2 CLI:
 
@@ -150,6 +152,7 @@ Also see this [Oracle database tutorial](https://www.oracletutorial.com/).
 In particular,
 see [create Oracle sample database](https://www.oracletutorial.com/getting-started/create-oracle-sample-database-for-practice/)
 for instructions on how to create the sample database from [Oracle database tutorial](https://www.oracletutorial.com/).
+Many thanks to [oracletutorial.com](https://www.oracletutorial.com/) for this sample database.
 
 Steps:
 
