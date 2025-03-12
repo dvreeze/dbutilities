@@ -92,18 +92,7 @@ public class GetTableMetaData implements ConnectionToJsonObjectFunction {
                                                     .map(v -> (JsonValue) jsonProvider.createValue(v))
                                                     .orElse(JsonValue.NULL)
                                     )
-                                    .add(
-                                            "selfReferencingColName",
-                                            Optional.ofNullable(rs.getString("SELF_REFERENCING_COL_NAME"))
-                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
-                                                    .orElse(JsonValue.NULL)
-                                    )
-                                    .add(
-                                            "refGeneration",
-                                            Optional.ofNullable(rs.getString("REF_GENERATION"))
-                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
-                                                    .orElse(JsonValue.NULL)
-                                    )
+                            // Left out SELF_REFERENCING_COL_NAME and REF_GENERATION
                     );
                 }
                 return jsonProvider.createObjectBuilder()
