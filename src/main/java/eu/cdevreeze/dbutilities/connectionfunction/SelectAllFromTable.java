@@ -17,15 +17,6 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.spi.JsonProvider;
-
-import java.sql.*;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 /**
  * {@link ConnectionToJsonObjectFunction} that selects all data from a given table.
@@ -34,7 +25,7 @@ import java.util.stream.IntStream;
  *
  * @author Chris de Vreeze
  */
-public class SelectAllFromTable implements ConnectionToJsonObjectFunction {
+public class SelectAllFromTable extends AbstractGetQueryResults {
 
     private final String tableName;
 
@@ -42,40 +33,10 @@ public class SelectAllFromTable implements ConnectionToJsonObjectFunction {
         this.tableName = tableName;
     }
 
+    // TODO Protect against SQL injection
+
     @Override
-    public JsonObject apply(Connection connection) {
-        // Unlike Json, JsonProvider does not involve a lookup each time it is used
-        JsonProvider jsonProvider = JsonProvider.provider();
-
-        // TODO Protect against SQL injection
-
-        try (PreparedStatement ps = connection.prepareStatement("select * from " + tableName)) {
-            try (ResultSet rs = ps.executeQuery()) {
-                JsonArrayBuilder rowsJsonArr = jsonProvider.createArrayBuilder();
-                ResultSetMetaData rsMetaData = rs.getMetaData();
-                while (rs.next()) {
-                    JsonObjectBuilder row = jsonProvider.createObjectBuilder();
-                    IntStream.rangeClosed(1, rsMetaData.getColumnCount())
-                            .forEach(i -> {
-                                try {
-                                    row.add(
-                                            rsMetaData.getColumnLabel(i),
-                                            Optional.ofNullable(rs.getString(i))
-                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
-                                                    .orElse(JsonValue.NULL)
-                                    );
-                                } catch (SQLException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            });
-                    rowsJsonArr.add(row);
-                }
-                return jsonProvider.createObjectBuilder()
-                        .add("rows", rowsJsonArr)
-                        .build();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    protected String getQueryString() {
+        return "select * from " + tableName;
     }
 }
