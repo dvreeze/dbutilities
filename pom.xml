@@ -5,7 +5,7 @@
 
     <groupId>eu.cdevreeze.dbutilities</groupId>
     <artifactId>dbutilities</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0-SNAPSHOT</version>
 
     <name>dbutilities</name>
     <url>https://github.com/dvreeze/dbutilities</url>
