@@ -42,7 +42,7 @@ public abstract class AbstractGetQueryResultsAsXml implements ConnectionToElemen
     protected abstract String getQueryString();
 
     @Override
-    public Element apply(Connection connection) {
+    public final Element apply(Connection connection) {
         try (PreparedStatement ps = connection.prepareStatement(getQueryString())) {
             try (ResultSet rs = ps.executeQuery()) {
                 List<Element> rows = new ArrayList<>();
