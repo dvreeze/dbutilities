@@ -19,6 +19,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 
@@ -53,27 +54,21 @@ public class SelectAllFromTable implements ConnectionToJsonObjectFunction {
                 JsonArrayBuilder rowsJsonArr = jsonProvider.createArrayBuilder();
                 ResultSetMetaData rsMetaData = rs.getMetaData();
                 while (rs.next()) {
-                    JsonArrayBuilder rowColumnsJsonArr = jsonProvider.createArrayBuilder();
+                    JsonObjectBuilder row = jsonProvider.createObjectBuilder();
                     IntStream.rangeClosed(1, rsMetaData.getColumnCount())
                             .forEach(i -> {
                                 try {
-                                    rowColumnsJsonArr.add(
-                                            jsonProvider.createObjectBuilder()
-                                                    .add("column", rsMetaData.getColumnName(i))
-                                                    .add("label", rsMetaData.getColumnLabel(i))
-                                                    .add("value",
-                                                            Optional.ofNullable(rs.getString(i))
-                                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
-                                                                    .orElse(JsonValue.NULL)
-                                                    )
+                                    row.add(
+                                            rsMetaData.getColumnLabel(i),
+                                            Optional.ofNullable(rs.getString(i))
+                                                    .map(v -> (JsonValue) jsonProvider.createValue(v))
+                                                    .orElse(JsonValue.NULL)
                                     );
                                 } catch (SQLException e) {
                                     throw new RuntimeException(e);
                                 }
                             });
-                    rowsJsonArr.add(
-                            jsonProvider.createObjectBuilder().add("row", rowColumnsJsonArr)
-                    );
+                    rowsJsonArr.add(row);
                 }
                 return jsonProvider.createObjectBuilder()
                         .add("rows", rowsJsonArr)
