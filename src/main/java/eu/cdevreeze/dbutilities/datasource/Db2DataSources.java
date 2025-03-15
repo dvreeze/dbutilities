@@ -17,25 +17,21 @@
 package eu.cdevreeze.dbutilities.datasource;
 
 import com.ibm.db2.jcc.DB2SimpleDataSource;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Named;
 import org.eclipse.microprofile.config.Config;
 
 import javax.sql.DataSource;
 
 /**
- * CDI-injectable Db2 {@link DataSource}.
+ * Db2 {@link DataSource} factory.
  *
  * @author Chris de Vreeze
  */
-@ApplicationScoped
 public class Db2DataSources {
 
-    @Produces
-    @Named("db2")
-    @ApplicationScoped
-    public DataSource getDataSource(Config config) {
+    private Db2DataSources() {
+    }
+
+    public static DataSource getDataSource(Config config) {
         var dataSource = new DB2SimpleDataSource();
 
         dataSource.setDriverType(config.getValue("db2.driverType", Integer.class));

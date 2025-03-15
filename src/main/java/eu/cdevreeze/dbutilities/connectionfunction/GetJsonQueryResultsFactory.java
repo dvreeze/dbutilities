@@ -16,12 +16,8 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionFunctionFactory;
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Typed;
-import jakarta.inject.Named;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -32,9 +28,6 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-@ApplicationScoped
-@Named("GetJsonQueryResults")
-@Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
 public class GetJsonQueryResultsFactory implements ConnectionToJsonObjectFunctionFactory {
 
     @Override

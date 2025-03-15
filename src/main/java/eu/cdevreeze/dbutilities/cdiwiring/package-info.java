@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities.connectionfunction;
-
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
-
-import java.util.List;
-import java.util.Objects;
-
 /**
- * Factory of {@link SelectAllFromTable} objects.
+ * Localized namespace where CDI wiring occurs. This leaves most code "unaffected by CDI".
+ * As a result, the conceptual complexities of CDI are localized, and most code remains plain Java code.
+ * This also means that most code is not affected by limitations imposed on CDI beans, and that most
+ * code contains no CDI proxies.
+ * <p>
+ * See <a href="https://alexn.org/blog/2022/09/19/java-cultural-problem/">Java cultural problem</a> for an
+ * excellent explanation of why localizing use of CDI is a good idea.
  *
  * @author Chris de Vreeze
  */
-public class SelectAllFromTableFactory implements ConnectionToJsonObjectFunctionFactory {
-
-    @Override
-    public SelectAllFromTable apply(List<String> args) {
-        Objects.checkIndex(0, args.size());
-        String tableName = Objects.requireNonNull(args.get(0));
-        return new SelectAllFromTable(tableName);
-    }
-}
+package eu.cdevreeze.dbutilities.cdiwiring;

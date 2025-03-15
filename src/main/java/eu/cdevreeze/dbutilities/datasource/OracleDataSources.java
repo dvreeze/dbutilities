@@ -17,9 +17,6 @@
 package eu.cdevreeze.dbutilities.datasource;
 
 import com.google.common.base.Preconditions;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Named;
 import oracle.jdbc.datasource.impl.OracleDataSource;
 import org.eclipse.microprofile.config.Config;
 
@@ -28,17 +25,16 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 /**
- * CDI-injectable Oracle {@link DataSource}.
+ * Oracle {@link DataSource} factory.
  *
  * @author Chris de Vreeze
  */
-@ApplicationScoped
 public class OracleDataSources {
 
-    @Produces
-    @Named("oracle")
-    @ApplicationScoped
-    public DataSource getDataSource(Config config) {
+    private OracleDataSources() {
+    }
+
+    public static DataSource getDataSource(Config config) {
         try {
             var dataSource = new OracleDataSource();
 

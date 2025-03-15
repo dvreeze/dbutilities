@@ -16,26 +16,22 @@
 
 package eu.cdevreeze.dbutilities.datasource;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Named;
 import org.eclipse.microprofile.config.Config;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
 
 /**
- * CDI-injectable Postgresql {@link DataSource}.
+ * Postgresql {@link DataSource} factory.
  *
  * @author Chris de Vreeze
  */
-@ApplicationScoped
 public class PostgresqlDataSources {
 
-    @Produces
-    @Named("postgresql")
-    @ApplicationScoped
-    public DataSource getDataSource(Config config) {
+    private PostgresqlDataSources() {
+    }
+
+    public static DataSource getDataSource(Config config) {
         var dataSource = new PGSimpleDataSource();
 
         dataSource.setServerNames(new String[]{config.getValue("postgresql.serverName", String.class)});
