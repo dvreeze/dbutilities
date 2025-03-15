@@ -47,8 +47,6 @@ public class GetJsonQueryResults implements ConnectionToJsonObjectFunction {
         this.delegate = new GetQueryResults(queryFile, queryParameters);
     }
 
-    // TODO Protect against SQL injection
-
     @Override
     public JsonObject apply(Connection connection) {
         JsonObject rawResult = delegate.apply(connection);

@@ -42,8 +42,6 @@ public class GetQueryResultsAsXml extends AbstractGetQueryResultsAsXml {
         this.queryParameters = List.copyOf(queryParameters);
     }
 
-    // TODO Protect against SQL injection
-
     @Override
     protected String getQueryString() {
         try {

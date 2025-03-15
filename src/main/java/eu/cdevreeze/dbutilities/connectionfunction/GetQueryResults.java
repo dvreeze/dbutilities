@@ -42,8 +42,6 @@ public class GetQueryResults extends AbstractGetQueryResults {
         this.queryParameters = List.copyOf(queryParameters);
     }
 
-    // TODO Protect against SQL injection
-
     @Override
     protected String getQueryString() {
         try {

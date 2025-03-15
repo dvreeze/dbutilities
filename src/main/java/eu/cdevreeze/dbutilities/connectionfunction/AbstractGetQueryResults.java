@@ -17,6 +17,7 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.PreparedStatements;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
@@ -46,7 +47,7 @@ public abstract class AbstractGetQueryResults implements ConnectionToJsonObjectF
         JsonProvider jsonProvider = JsonProvider.provider();
 
         try (PreparedStatement ps = connection.prepareStatement(getQueryString())) {
-            QueryParameter.setParametersOnPreparedStatement(getQueryParameters(), ps);
+            PreparedStatements.setParameters(ps, getQueryParameters());
 
             try (ResultSet rs = ps.executeQuery()) {
                 JsonArrayBuilder rowsJsonArr = jsonProvider.createArrayBuilder();

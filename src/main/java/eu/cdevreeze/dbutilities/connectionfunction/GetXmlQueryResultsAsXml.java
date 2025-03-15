@@ -47,8 +47,6 @@ public class GetXmlQueryResultsAsXml implements ConnectionToElementFunction {
         this.delegate = new GetQueryResultsAsXml(queryFile, queryParameters);
     }
 
-    // TODO Protect against SQL injection
-
     @Override
     public Element apply(Connection connection) {
         Element rawResult = delegate.apply(connection);

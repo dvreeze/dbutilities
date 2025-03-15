@@ -19,48 +19,32 @@ package eu.cdevreeze.dbutilities.connectionfunction.internal;
 import com.google.common.base.Preconditions;
 
 import java.sql.JDBCType;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.SQLType;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Parameter data to be set on a {@link java.sql.PreparedStatement}.
- * <p>
- * This support for setting query parameters is far from complete, but should work in most
- * rather straightforward cases.
  *
  * @author Chris de Vreeze
  */
 public record QueryParameter(Object object, SQLType sqlType) {
 
-    public QueryParameter sanitized() {
-        if (sqlType() == JDBCType.NULL) {
+    public QueryParameter {
+        if (sqlType == JDBCType.NULL) {
             // Just to be sure. Maybe it is not needed.
-            return new QueryParameter(null, sqlType);
-        } else {
-            return this;
-        }
-    }
-
-    public void setOnPreparedStatement(PreparedStatement ps, int parameterIndex) {
-        try {
-            // The overloaded variant passing a SQLType is not always implemented
-            ps.setObject(parameterIndex, object(), sqlType().getVendorTypeNumber());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            object = null;
         }
     }
 
     public static QueryParameter from(Object object, String sqlTypeAsString) {
-        return new QueryParameter(object, JDBCType.valueOf(sqlTypeAsString.toUpperCase())).sanitized();
+        return new QueryParameter(object, JDBCType.valueOf(sqlTypeAsString.toUpperCase()));
     }
 
     public static List<QueryParameter> parseParameters(List<String> args) {
         Preconditions.checkArgument(
                 args.size() % 2 == 0,
-                "Expected even number of arguments (pairs of parameter value and JDBC type)"
+                "Expected even number of arguments (pairs of parameter value and JDBC type, such as VARCHAR, BOOLEAN, INTEGER or DECIMAL)"
         );
 
         if (args.isEmpty()) {
@@ -72,16 +56,6 @@ public record QueryParameter(Object object, SQLType sqlType) {
             // Recursion
             result.addAll(parseParameters(args.subList(2, args.size())));
             return result.stream().toList();
-        }
-    }
-
-    public static void setParametersOnPreparedStatement(
-            List<QueryParameter> parameters,
-            PreparedStatement ps
-    ) {
-        for (int idx = 0; idx < parameters.size(); idx++) {
-            // In JDBC, parameters are 1-based
-            parameters.get(idx).setOnPreparedStatement(ps, idx + 1);
         }
     }
 }
