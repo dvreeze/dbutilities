@@ -37,7 +37,7 @@ public class DataSourceWiring {
     @Produces
     @Named("db2")
     @ApplicationScoped
-    public DataSource getDb2DataSource(Config config) {
+    public static DataSource getDb2DataSource(Config config) {
         return Db2DataSources.getDataSource(config);
     }
 
