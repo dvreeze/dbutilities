@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities.config;
+package eu.cdevreeze.dbutilities.cdiwiring.config;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
