@@ -37,21 +37,21 @@ public class DataSourceWiring {
     @Produces
     @Named("db2")
     @ApplicationScoped
-    public static DataSource getDb2DataSource(Config config) {
+    public DataSource getDb2DataSource(Config config) {
         return Db2DataSources.getDataSource(config);
     }
 
     @Produces
     @Named("oracle")
     @ApplicationScoped
-    public static DataSource getOracleDataSource(Config config) {
+    public DataSource getOracleDataSource(Config config) {
         return OracleDataSources.getDataSource(config);
     }
 
     @Produces
     @Named("postgresql")
     @ApplicationScoped
-    public static DataSource getPostgresqlDataSource(Config config) {
+    public DataSource getPostgresqlDataSource(Config config) {
         return PostgresqlDataSources.getDataSource(config);
     }
 }
