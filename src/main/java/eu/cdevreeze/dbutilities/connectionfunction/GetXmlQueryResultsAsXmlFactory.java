@@ -28,7 +28,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class GetXmlQueryResultsAsXmlFactory implements ConnectionToElementFunctionFactory {
+public final class GetXmlQueryResultsAsXmlFactory implements ConnectionToElementFunctionFactory {
 
     @Override
     public GetXmlQueryResultsAsXml apply(List<String> args) {

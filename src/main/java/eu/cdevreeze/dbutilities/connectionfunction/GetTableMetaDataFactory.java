@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class GetTableMetaDataFactory implements ConnectionToJsonObjectFunctionFactory {
+public final class GetTableMetaDataFactory implements ConnectionToJsonObjectFunctionFactory {
 
     @Override
     public GetTableMetaData apply(List<String> args) {

@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class SelectAllFromTableAsXmlFactory implements ConnectionToElementFunctionFactory {
+public final class SelectAllFromTableAsXmlFactory implements ConnectionToElementFunctionFactory {
 
     @Override
     public SelectAllFromTableAsXml apply(List<String> args) {

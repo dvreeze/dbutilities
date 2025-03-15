@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class SelectRowCountFromTableFactory implements ConnectionToJsonObjectFunctionFactory {
+public final class SelectRowCountFromTableFactory implements ConnectionToJsonObjectFunctionFactory {
 
     @Override
     public SelectRowCountFromTable apply(List<String> args) {

@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Chris de Vreeze
  */
-public class SelectAllFromTableAsXml extends AbstractGetQueryResultsAsXml {
+public final class SelectAllFromTableAsXml extends AbstractGetQueryResultsAsXml {
 
     private final String tableName;
 

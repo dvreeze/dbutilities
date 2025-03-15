@@ -26,7 +26,7 @@ import javax.sql.DataSource;
  *
  * @author Chris de Vreeze
  */
-public class Db2DataSources {
+public final class Db2DataSources {
 
     private Db2DataSources() {
     }

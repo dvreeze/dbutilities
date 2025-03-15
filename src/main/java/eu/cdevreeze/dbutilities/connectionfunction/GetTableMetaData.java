@@ -35,7 +35,7 @@ import java.util.Optional;
  *
  * @author Chris de Vreeze
  */
-public class GetTableMetaData implements ConnectionToJsonObjectFunction {
+public final class GetTableMetaData implements ConnectionToJsonObjectFunction {
 
     private final String tableName;
 

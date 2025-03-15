@@ -39,7 +39,7 @@ import java.util.Map;
  *
  * @author Chris de Vreeze
  */
-public class GetJsonQueryResults implements ConnectionToJsonObjectFunction {
+public final class GetJsonQueryResults implements ConnectionToJsonObjectFunction {
 
     private final GetQueryResults delegate;
 

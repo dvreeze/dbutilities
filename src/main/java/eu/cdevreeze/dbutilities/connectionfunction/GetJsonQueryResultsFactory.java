@@ -28,7 +28,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class GetJsonQueryResultsFactory implements ConnectionToJsonObjectFunctionFactory {
+public final class GetJsonQueryResultsFactory implements ConnectionToJsonObjectFunctionFactory {
 
     @Override
     public GetJsonQueryResults apply(List<String> args) {

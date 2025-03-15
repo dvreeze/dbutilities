@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Chris de Vreeze
  */
-public class SelectAllFromTable extends AbstractGetQueryResults {
+public final class SelectAllFromTable extends AbstractGetQueryResults {
 
     private final String tableName;
 

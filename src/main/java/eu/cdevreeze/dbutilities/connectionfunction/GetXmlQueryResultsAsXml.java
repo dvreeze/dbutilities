@@ -39,7 +39,7 @@ import java.util.List;
  *
  * @author Chris de Vreeze
  */
-public class GetXmlQueryResultsAsXml implements ConnectionToElementFunction {
+public final class GetXmlQueryResultsAsXml implements ConnectionToElementFunction {
 
     private final GetQueryResultsAsXml delegate;
 

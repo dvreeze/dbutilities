@@ -29,7 +29,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class GetXmlQueryResultsAsXmlProgram {
+public final class GetXmlQueryResultsAsXmlProgram {
 
     public static void main(String... args) {
         Objects.checkIndex(0, args.length);

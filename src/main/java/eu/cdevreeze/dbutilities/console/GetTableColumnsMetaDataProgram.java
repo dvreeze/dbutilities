@@ -28,7 +28,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class GetTableColumnsMetaDataProgram {
+public final class GetTableColumnsMetaDataProgram {
 
     public static void main(String... args) {
         Objects.checkIndex(0, args.length);

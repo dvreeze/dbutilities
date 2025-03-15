@@ -46,7 +46,7 @@ import java.util.*;
  *
  * @author Chris de Vreeze
  */
-public class JdbcProgramReturningJson {
+public final class JdbcProgramReturningJson {
 
     public static void main(String[] args) {
         Objects.checkIndex(0, args.length);

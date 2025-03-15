@@ -29,7 +29,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class GetQueryResultsProgram {
+public final class GetQueryResultsProgram {
 
     public static void main(String... args) {
         Objects.checkIndex(0, args.length);

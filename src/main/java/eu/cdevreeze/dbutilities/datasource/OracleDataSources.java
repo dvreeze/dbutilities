@@ -29,7 +29,7 @@ import java.util.Optional;
  *
  * @author Chris de Vreeze
  */
-public class OracleDataSources {
+public final class OracleDataSources {
 
     private OracleDataSources() {
     }

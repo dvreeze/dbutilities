@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class SelectAllFromTableFactory implements ConnectionToJsonObjectFunctionFactory {
+public final class SelectAllFromTableFactory implements ConnectionToJsonObjectFunctionFactory {
 
     @Override
     public SelectAllFromTable apply(List<String> args) {

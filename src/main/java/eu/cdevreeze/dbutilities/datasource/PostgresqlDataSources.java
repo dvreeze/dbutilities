@@ -26,7 +26,7 @@ import javax.sql.DataSource;
  *
  * @author Chris de Vreeze
  */
-public class PostgresqlDataSources {
+public final class PostgresqlDataSources {
 
     private PostgresqlDataSources() {
     }

@@ -28,7 +28,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public class SelectRowCountFromTableProgram {
+public final class SelectRowCountFromTableProgram {
 
     public static void main(String... args) {
         Objects.checkIndex(0, args.length);

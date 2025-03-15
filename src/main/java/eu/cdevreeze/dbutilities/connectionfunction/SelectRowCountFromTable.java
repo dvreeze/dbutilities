@@ -32,7 +32,7 @@ import java.sql.SQLException;
  *
  * @author Chris de Vreeze
  */
-public class SelectRowCountFromTable implements ConnectionToJsonObjectFunction {
+public final class SelectRowCountFromTable implements ConnectionToJsonObjectFunction {
 
     private final String tableName;
 

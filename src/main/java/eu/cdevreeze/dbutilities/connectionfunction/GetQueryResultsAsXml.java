@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author Chris de Vreeze
  */
-public class GetQueryResultsAsXml extends AbstractGetQueryResultsAsXml {
+public final class GetQueryResultsAsXml extends AbstractGetQueryResultsAsXml {
 
     private final Path queryFile;
     private final List<QueryParameter> queryParameters;
