@@ -19,6 +19,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentParser;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentParsers;
@@ -28,6 +29,7 @@ import javax.xml.namespace.QName;
 import java.io.StringReader;
 import java.nio.file.Path;
 import java.sql.Connection;
+import java.util.List;
 
 /**
  * {@link ConnectionToElementFunction} that returns the results of an XML-returning query as XML.
@@ -41,8 +43,8 @@ public class GetXmlQueryResultsAsXml implements ConnectionToElementFunction {
 
     private final GetQueryResultsAsXml delegate;
 
-    public GetXmlQueryResultsAsXml(Path queryFile) {
-        this.delegate = new GetQueryResultsAsXml(queryFile);
+    public GetXmlQueryResultsAsXml(Path queryFile, List<QueryParameter> queryParameters) {
+        this.delegate = new GetQueryResultsAsXml(queryFile, queryParameters);
     }
 
     // TODO Protect against SQL injection

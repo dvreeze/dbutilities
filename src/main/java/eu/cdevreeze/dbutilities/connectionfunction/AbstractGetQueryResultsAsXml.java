@@ -19,6 +19,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Nodes;
 
@@ -41,9 +42,13 @@ public abstract class AbstractGetQueryResultsAsXml implements ConnectionToElemen
 
     protected abstract String getQueryString();
 
+    protected abstract List<QueryParameter> getQueryParameters();
+
     @Override
     public final Element apply(Connection connection) {
         try (PreparedStatement ps = connection.prepareStatement(getQueryString())) {
+            QueryParameter.setParametersOnPreparedStatement(getQueryParameters(), ps);
+
             try (ResultSet rs = ps.executeQuery()) {
                 List<Element> rows = new ArrayList<>();
                 ResultSetMetaData rsMetaData = rs.getMetaData();

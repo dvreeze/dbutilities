@@ -48,11 +48,16 @@ import java.util.*;
  */
 public class JdbcProgramReturningJson {
 
-    public static void main(String... args) {
+    public static void main(String[] args) {
         Objects.checkIndex(0, args.length);
         String connectionFunctionName = args[0];
+
         List<String> factoryArgs = Arrays.stream(args).skip(1).toList();
 
+        run(connectionFunctionName, factoryArgs);
+    }
+
+    public static void run(String connectionFunctionName, List<String> factoryArgs) {
         Weld weld = new Weld();
 
         try (WeldContainer weldContainer = weld.initialize()) {

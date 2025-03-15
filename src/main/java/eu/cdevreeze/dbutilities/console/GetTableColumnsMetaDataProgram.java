@@ -18,6 +18,7 @@ package eu.cdevreeze.dbutilities.console;
 
 import eu.cdevreeze.dbutilities.connectionfunction.GetTableColumnsMetaData;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -32,10 +33,11 @@ public class GetTableColumnsMetaDataProgram {
     public static void main(String... args) {
         Objects.checkIndex(0, args.length);
         String tableName = args[0];
+        Objects.requireNonNull(tableName);
 
-        JdbcProgramReturningJson.main(
+        JdbcProgramReturningJson.run(
                 GetTableColumnsMetaData.class.getSimpleName(),
-                tableName
+                Arrays.stream(args).toList()
         );
     }
 }

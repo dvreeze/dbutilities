@@ -19,6 +19,7 @@ package eu.cdevreeze.dbutilities.console;
 import eu.cdevreeze.dbutilities.connectionfunction.GetXmlQueryResultsAsXml;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -33,10 +34,11 @@ public class GetXmlQueryResultsAsXmlProgram {
     public static void main(String... args) {
         Objects.checkIndex(0, args.length);
         Path queryFile = Path.of(args[0]);
+        Objects.requireNonNull(queryFile);
 
-        JdbcProgramReturningXml.main(
+        JdbcProgramReturningXml.run(
                 GetXmlQueryResultsAsXml.class.getSimpleName(),
-                queryFile.toString()
+                Arrays.stream(args).toList()
         );
     }
 }

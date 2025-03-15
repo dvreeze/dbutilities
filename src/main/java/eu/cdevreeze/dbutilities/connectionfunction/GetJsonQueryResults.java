@@ -18,6 +18,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 
 import com.google.common.base.Preconditions;
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReaderFactory;
@@ -27,6 +28,7 @@ import jakarta.json.spi.JsonProvider;
 import java.io.StringReader;
 import java.nio.file.Path;
 import java.sql.Connection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,8 +43,8 @@ public class GetJsonQueryResults implements ConnectionToJsonObjectFunction {
 
     private final GetQueryResults delegate;
 
-    public GetJsonQueryResults(Path queryFile) {
-        this.delegate = new GetQueryResults(queryFile);
+    public GetJsonQueryResults(Path queryFile, List<QueryParameter> queryParameters) {
+        this.delegate = new GetQueryResults(queryFile, queryParameters);
     }
 
     // TODO Protect against SQL injection

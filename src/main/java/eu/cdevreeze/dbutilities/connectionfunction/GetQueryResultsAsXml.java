@@ -17,11 +17,13 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 /**
  * {@link ConnectionToElementFunction} that returns the results of a query as XML.
@@ -33,9 +35,11 @@ import java.nio.file.Path;
 public class GetQueryResultsAsXml extends AbstractGetQueryResultsAsXml {
 
     private final Path queryFile;
+    private final List<QueryParameter> queryParameters;
 
-    public GetQueryResultsAsXml(Path queryFile) {
+    public GetQueryResultsAsXml(Path queryFile, List<QueryParameter> queryParameters) {
         this.queryFile = queryFile;
+        this.queryParameters = List.copyOf(queryParameters);
     }
 
     // TODO Protect against SQL injection
@@ -47,5 +51,10 @@ public class GetQueryResultsAsXml extends AbstractGetQueryResultsAsXml {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    @Override
+    protected List<QueryParameter> getQueryParameters() {
+        return queryParameters;
     }
 }

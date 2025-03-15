@@ -17,6 +17,7 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
@@ -24,6 +25,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -36,12 +38,16 @@ public abstract class AbstractGetQueryResults implements ConnectionToJsonObjectF
 
     protected abstract String getQueryString();
 
+    protected abstract List<QueryParameter> getQueryParameters();
+
     @Override
     public final JsonObject apply(Connection connection) {
         // Unlike Json, JsonProvider does not involve a lookup each time it is used
         JsonProvider jsonProvider = JsonProvider.provider();
 
         try (PreparedStatement ps = connection.prepareStatement(getQueryString())) {
+            QueryParameter.setParametersOnPreparedStatement(getQueryParameters(), ps);
+
             try (ResultSet rs = ps.executeQuery()) {
                 JsonArrayBuilder rowsJsonArr = jsonProvider.createArrayBuilder();
                 ResultSetMetaData rsMetaData = rs.getMetaData();

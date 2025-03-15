@@ -18,6 +18,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionFunctionFactory;
 import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Typed;
 import jakarta.inject.Named;
@@ -40,6 +41,7 @@ public class GetJsonQueryResultsFactory implements ConnectionToJsonObjectFunctio
     public GetJsonQueryResults apply(List<String> args) {
         Objects.checkIndex(0, args.size());
         Path queryFile = Path.of(Objects.requireNonNull(args.get(0)));
-        return new GetJsonQueryResults(queryFile);
+        List<QueryParameter> queryParameters = QueryParameter.parseParameters(args.subList(1, args.size()));
+        return new GetJsonQueryResults(queryFile, queryParameters);
     }
 }

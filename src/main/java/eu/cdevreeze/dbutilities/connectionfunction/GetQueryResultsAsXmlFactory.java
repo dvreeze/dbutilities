@@ -18,6 +18,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionFunctionFactory;
 import eu.cdevreeze.dbutilities.ConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Typed;
 import jakarta.inject.Named;
@@ -40,6 +41,7 @@ public class GetQueryResultsAsXmlFactory implements ConnectionToElementFunctionF
     public GetQueryResultsAsXml apply(List<String> args) {
         Objects.checkIndex(0, args.size());
         Path queryFile = Path.of(Objects.requireNonNull(args.get(0)));
-        return new GetQueryResultsAsXml(queryFile);
+        List<QueryParameter> queryParameters = QueryParameter.parseParameters(args.subList(1, args.size()));
+        return new GetQueryResultsAsXml(queryFile, queryParameters);
     }
 }

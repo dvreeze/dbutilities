@@ -17,6 +17,9 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
+
+import java.util.List;
 
 /**
  * {@link ConnectionToElementFunction} that selects all data from a given table.
@@ -38,5 +41,10 @@ public class SelectAllFromTableAsXml extends AbstractGetQueryResultsAsXml {
     @Override
     protected String getQueryString() {
         return "select * from " + tableName;
+    }
+
+    @Override
+    protected List<QueryParameter> getQueryParameters() {
+        return List.of();
     }
 }

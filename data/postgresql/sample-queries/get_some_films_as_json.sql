@@ -28,5 +28,5 @@ select json_object(
   from film
   left join film_actor on (film.film_id = film_actor.film_id)
   left join actor on (film_actor.actor_id = actor.actor_id)
- where upper(film.title) like 'WA%'
+ where upper(film.title) like ?
  group by film.film_id
