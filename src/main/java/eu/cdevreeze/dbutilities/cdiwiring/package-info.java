@@ -22,6 +22,8 @@
  * <p>
  * See <a href="https://alexn.org/blog/2022/09/19/java-cultural-problem/">Java cultural problem</a> for an
  * excellent explanation of why localizing use of CDI is a good idea.
+ * <p>
+ * The only classes outside this namespace where CDI is used are a few "foundational" console programs.
  *
  * @author Chris de Vreeze
  */
