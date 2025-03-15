@@ -25,6 +25,8 @@ import java.util.List;
 
 /**
  * Parameter data to be set on a {@link java.sql.PreparedStatement}.
+ * <p>
+ * For the semantics of SQL types, see <a href="https://www.tutorialspoint.com/jdbc/jdbc-data-types.htm">JDBC data types</a>.
  *
  * @author Chris de Vreeze
  */
@@ -44,7 +46,7 @@ public record QueryParameter(Object object, SQLType sqlType) {
     public static List<QueryParameter> parseParameters(List<String> args) {
         Preconditions.checkArgument(
                 args.size() % 2 == 0,
-                "Expected even number of arguments (pairs of parameter value and JDBC type, such as VARCHAR, BOOLEAN, INTEGER or DECIMAL)"
+                "Expected even number of arguments (pairs of parameter value and JDBC type, such as VARCHAR, BOOLEAN, INTEGER or NUMERIC)"
         );
 
         if (args.isEmpty()) {
