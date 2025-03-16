@@ -37,15 +37,13 @@ public final class SelectRowCountFromTable implements ConnectionToJsonObjectFunc
     private final String tableName;
 
     public SelectRowCountFromTable(String tableName) {
-        this.tableName = tableName;
+        this.tableName = checkTableNameWrtSqlInjection(tableName);
     }
 
     @Override
     public JsonObject apply(Connection connection) {
         // Unlike Json, JsonProvider does not involve a lookup each time it is used
         JsonProvider jsonProvider = JsonProvider.provider();
-
-        // TODO Protect against SQL injection
 
         try (PreparedStatement ps = connection.prepareStatement("select count(*) from " + tableName)) {
             try (ResultSet rs = ps.executeQuery()) {
@@ -59,6 +57,14 @@ public final class SelectRowCountFromTable implements ConnectionToJsonObjectFunc
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private static String checkTableNameWrtSqlInjection(String tableName) {
+        if (tableName.chars().anyMatch(Character::isWhitespace)) {
+            throw new RuntimeException("Table name with whitespace not allowed (to prevent SQL injection)");
+        } else {
+            return tableName;
         }
     }
 }

@@ -33,10 +33,8 @@ public final class SelectAllFromTableAsXml extends AbstractGetQueryResultsAsXml 
     private final String tableName;
 
     public SelectAllFromTableAsXml(String tableName) {
-        this.tableName = tableName;
+        this.tableName = checkTableNameWrtSqlInjection(tableName);
     }
-
-    // TODO Protect against SQL injection
 
     @Override
     protected String getQueryString() {
@@ -46,5 +44,13 @@ public final class SelectAllFromTableAsXml extends AbstractGetQueryResultsAsXml 
     @Override
     protected List<QueryParameter> getQueryParameters() {
         return List.of();
+    }
+
+    private static String checkTableNameWrtSqlInjection(String tableName) {
+        if (tableName.chars().anyMatch(Character::isWhitespace)) {
+            throw new RuntimeException("Table name with whitespace not allowed (to prevent SQL injection)");
+        } else {
+            return tableName;
+        }
     }
 }
