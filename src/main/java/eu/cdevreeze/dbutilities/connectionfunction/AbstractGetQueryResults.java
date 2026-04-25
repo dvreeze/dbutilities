@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.PreparedStatements;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.json.JsonArrayBuilder;
@@ -31,11 +31,11 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 /**
- * Abstract {@link ConnectionToJsonObjectFunction} that returns the results of a query as JSON.
+ * Abstract {@link JdbcConnectionToJsonObjectFunction} that returns the results of a query as JSON.
  *
  * @author Chris de Vreeze
  */
-public abstract class AbstractGetQueryResults implements ConnectionToJsonObjectFunction {
+public abstract class AbstractGetQueryResults implements JdbcConnectionToJsonObjectFunction {
 
     protected abstract String getQueryString();
 

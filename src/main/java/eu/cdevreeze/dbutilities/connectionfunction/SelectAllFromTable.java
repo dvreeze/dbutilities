@@ -16,13 +16,13 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.util.List;
 
 /**
- * {@link ConnectionToJsonObjectFunction} that selects all data from a given table.
+ * {@link JdbcConnectionToJsonObjectFunction} that selects all data from a given table.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *

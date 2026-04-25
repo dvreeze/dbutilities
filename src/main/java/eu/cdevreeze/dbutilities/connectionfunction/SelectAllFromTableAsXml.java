@@ -16,13 +16,13 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.util.List;
 
 /**
- * {@link ConnectionToElementFunction} that selects all data from a given table.
+ * {@link JdbcConnectionToElementFunction} that selects all data from a given table.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *

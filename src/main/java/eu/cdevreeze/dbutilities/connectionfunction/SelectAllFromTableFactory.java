@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public final class SelectAllFromTableFactory implements ConnectionToJsonObjectFunctionFactory {
+public final class SelectAllFromTableFactory implements JdbcConnectionToJsonObjectFunctionFactory {
 
     @Override
     public SelectAllFromTable apply(List<String> args) {

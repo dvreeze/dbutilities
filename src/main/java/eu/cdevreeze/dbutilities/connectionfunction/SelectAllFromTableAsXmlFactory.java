@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public final class SelectAllFromTableAsXmlFactory implements ConnectionToElementFunctionFactory {
+public final class SelectAllFromTableAsXmlFactory implements JdbcConnectionToElementFunctionFactory {
 
     @Override
     public SelectAllFromTableAsXml apply(List<String> args) {

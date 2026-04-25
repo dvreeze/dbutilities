@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * {@link ConnectionToJsonObjectFunction} that returns the results of a query as JSON.
+ * {@link JdbcConnectionToJsonObjectFunction} that returns the results of a query as JSON.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *

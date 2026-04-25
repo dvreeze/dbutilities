@@ -7,11 +7,11 @@ This project can be useful to try out accessing different database servers from 
 One aspect of this is getting a JDBC driver (via Maven) and configuring it. This project can be used
 as a template for those JDBC driver configurations (without connection pooling), among other things.
 
-Of course, this project should not be mistaken for a "Java database access library". Personally, for
-database access from Java I would prefer [jOOQ](https://www.jooq.org/) or
-[Spring JDBC](https://docs.spring.io/spring-framework/reference/data-access/jdbc.html) to
-[JPA (Jakarta Persistence)](https://jakarta.ee/specifications/persistence/3.2/jakarta-persistence-spec-3.2),
-because "SQL-orientation" works well in practice and can lead to well performing applications.
+This project is based on an alpha version of [Hibernate 8.0](https://hibernate.org/orm/releases/8.0/),
+which is based on [JPA (Jakarta Persistence) 4.0 M1](https://jakarta.ee/specifications/persistence/4.0/jakarta-persistence-spec-4.0-m1),
+the first milestone of the upcoming [JPA 4.0](https://jakarta.ee/specifications/persistence/4.0/) standard.
+More than ever before Hibernate 8 and JPA 4.0 offer first-class support for native SQL. Hibernate's
+`StatelessSession` is also making it to that upcoming standard!
 
 ## Running containerized database servers
 
@@ -311,3 +311,5 @@ in case of ORA-12505 errors. Also see
 [connecting to CDB and PDB](https://oracle-base.com/articles/12c/multitenant-connecting-to-cdb-and-pdb-12cr1).
 
 ## Reference material
+
+[JPA 4.0 API doc](https://jakarta.ee/specifications/persistence/4.0/apidocs/jakarta.persistence/module-summary)

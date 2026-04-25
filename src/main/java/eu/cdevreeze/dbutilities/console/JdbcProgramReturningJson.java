@@ -17,8 +17,8 @@
 package eu.cdevreeze.dbutilities.console;
 
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
 import jakarta.enterprise.inject.Default;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
@@ -35,14 +35,13 @@ import org.jboss.weld.environment.se.WeldContainer;
 import javax.sql.DataSource;
 import java.io.StringWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Console program using a {@link ConnectionToJsonObjectFunction}. The first program argument
- * is the name of the {@link ConnectionToJsonObjectFunction} to create and run,
- * and the remaining program arguments are passed to the {@link ConnectionToJsonObjectFunctionFactory}
- * to create a {@link ConnectionToJsonObjectFunction}, which is subsequently run.
+ * Console program using a {@link JdbcConnectionToJsonObjectFunction}. The first program argument
+ * is the name of the {@link JdbcConnectionToJsonObjectFunction} to create and run,
+ * and the remaining program arguments are passed to the {@link JdbcConnectionToJsonObjectFunctionFactory}
+ * to create a {@link JdbcConnectionToJsonObjectFunction}, which is subsequently run.
  *
  * @author Chris de Vreeze
  */
@@ -81,21 +80,21 @@ public final class JdbcProgramReturningJson {
                     String.format("Could not resolve DataSource with name '%s'", dataSourceName)
             );
 
-            Instance<ConnectionToJsonObjectFunctionFactory> functionFactoryInstance =
-                    CDI.current().select(ConnectionToJsonObjectFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
+            Instance<JdbcConnectionToJsonObjectFunctionFactory> functionFactoryInstance =
+                    CDI.current().select(JdbcConnectionToJsonObjectFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
 
             Preconditions.checkArgument(
                     functionFactoryInstance.isResolvable(),
                     String.format("Could not resolve function with name '%s'", connectionFunctionName)
             );
 
-            ConnectionToJsonObjectFunction function = functionFactoryInstance.get().apply(factoryArgs);
+            JdbcConnectionToJsonObjectFunction function = functionFactoryInstance.get().apply(factoryArgs);
 
             // Do the actual work within a JDBC Connection
             JsonObject result;
             try (Connection conn = dataSourceInstance.get().getConnection()) {
                 result = function.apply(conn);
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 

@@ -17,8 +17,8 @@
 package eu.cdevreeze.dbutilities.console;
 
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
-import eu.cdevreeze.dbutilities.ConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentPrinter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentPrinters;
@@ -32,16 +32,15 @@ import org.jboss.weld.environment.se.WeldContainer;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * Console program using a {@link ConnectionToElementFunction}. The first program argument
- * is the name of the {@link ConnectionToElementFunction} to create and run,
- * and the remaining program arguments are passed to the {@link ConnectionToElementFunctionFactory}
- * to create a {@link ConnectionToElementFunction}, which is subsequently run.
+ * Console program using a {@link JdbcConnectionToElementFunction}. The first program argument
+ * is the name of the {@link JdbcConnectionToElementFunction} to create and run,
+ * and the remaining program arguments are passed to the {@link JdbcConnectionToElementFunctionFactory}
+ * to create a {@link JdbcConnectionToElementFunction}, which is subsequently run.
  *
  * @author Chris de Vreeze
  */
@@ -80,21 +79,21 @@ public final class JdbcProgramReturningXml {
                     String.format("Could not resolve DataSource with name '%s'", dataSourceName)
             );
 
-            Instance<ConnectionToElementFunctionFactory> functionFactoryInstance =
-                    CDI.current().select(ConnectionToElementFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
+            Instance<JdbcConnectionToElementFunctionFactory> functionFactoryInstance =
+                    CDI.current().select(JdbcConnectionToElementFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
 
             Preconditions.checkArgument(
                     functionFactoryInstance.isResolvable(),
                     String.format("Could not resolve function with name '%s'", connectionFunctionName)
             );
 
-            ConnectionToElementFunction function = functionFactoryInstance.get().apply(factoryArgs);
+            JdbcConnectionToElementFunction function = functionFactoryInstance.get().apply(factoryArgs);
 
             // Do the actual work within a JDBC Connection
             Element result;
             try (Connection conn = dataSourceInstance.get().getConnection()) {
                 result = function.apply(conn);
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 

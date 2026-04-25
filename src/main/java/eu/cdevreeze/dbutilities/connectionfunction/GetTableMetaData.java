@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
@@ -29,13 +29,13 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 /**
- * {@link ConnectionToJsonObjectFunction} that retrieves metadata of a table in the database.
+ * {@link JdbcConnectionToJsonObjectFunction} that retrieves metadata of a table in the database.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *
  * @author Chris de Vreeze
  */
-public final class GetTableMetaData implements ConnectionToJsonObjectFunction {
+public final class GetTableMetaData implements JdbcConnectionToJsonObjectFunction {
 
     private final String tableName;
 

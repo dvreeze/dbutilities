@@ -16,13 +16,13 @@
 
 package eu.cdevreeze.dbutilities;
 
-import jakarta.json.JsonObject;
+import java.sql.Connection;
 
 /**
- * {@link ConnectionFunction} returning an XML {@link JsonObject}.
+ * {@link jakarta.persistence.ConnectionFunction} taking a {@link java.sql.Connection}.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface ConnectionToJsonObjectFunction extends ConnectionFunction<JsonObject> {
+public interface JdbcConnectionFunction<T> extends jakarta.persistence.ConnectionFunction<Connection, T> {
 }

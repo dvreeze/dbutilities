@@ -16,9 +16,9 @@
 
 package eu.cdevreeze.dbutilities.cdiwiring.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionFunctionFactory;
-import eu.cdevreeze.dbutilities.ConnectionToElementFunctionFactory;
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
 import eu.cdevreeze.dbutilities.connectionfunction.*;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
@@ -26,7 +26,7 @@ import jakarta.enterprise.inject.Typed;
 import jakarta.inject.Named;
 
 /**
- * CDI wiring of {@link eu.cdevreeze.dbutilities.ConnectionFunctionFactory} instances.
+ * CDI wiring of {@link JdbcConnectionFunctionFactory} instances.
  *
  * @author Chris de Vreeze
  */
@@ -36,7 +36,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("GetJsonQueryResults")
-    @Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToJsonObjectFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public GetJsonQueryResultsFactory getJsonQueryResultsFactory() {
         return new GetJsonQueryResultsFactory();
     }
@@ -44,7 +44,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("GetQueryResultsAsXml")
-    @Typed({ConnectionToElementFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToElementFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public GetQueryResultsAsXmlFactory getQueryResultsAsXmlFactory() {
         return new GetQueryResultsAsXmlFactory();
     }
@@ -52,7 +52,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("GetQueryResults")
-    @Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToJsonObjectFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public GetQueryResultsFactory getQueryResultsFactory() {
         return new GetQueryResultsFactory();
     }
@@ -60,7 +60,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("GetTableColumnsMetaData")
-    @Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToJsonObjectFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public GetTableColumnsMetaDataFactory getTableColumnsMetaDataFactory() {
         return new GetTableColumnsMetaDataFactory();
     }
@@ -68,7 +68,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("GetTableMetaData")
-    @Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToJsonObjectFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public GetTableMetaDataFactory getTableMetaDataFactory() {
         return new GetTableMetaDataFactory();
     }
@@ -76,7 +76,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("GetXmlQueryResultsAsXml")
-    @Typed({ConnectionToElementFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToElementFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public GetXmlQueryResultsAsXmlFactory getXmlQueryResultsAsXmlFactory() {
         return new GetXmlQueryResultsAsXmlFactory();
     }
@@ -84,7 +84,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("SelectAllFromTableAsXml")
-    @Typed({ConnectionToElementFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToElementFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public SelectAllFromTableAsXmlFactory selectAllFromTableAsXmlFactory() {
         return new SelectAllFromTableAsXmlFactory();
     }
@@ -92,7 +92,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("SelectAllFromTable")
-    @Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToJsonObjectFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public SelectAllFromTableFactory selectAllFromTableFactory() {
         return new SelectAllFromTableFactory();
     }
@@ -100,7 +100,7 @@ public class ConnectionFunctionWiring {
     @Produces
     @ApplicationScoped
     @Named("SelectRowCountFromTable")
-    @Typed({ConnectionToJsonObjectFunctionFactory.class, ConnectionFunctionFactory.class})
+    @Typed({JdbcConnectionToJsonObjectFunctionFactory.class, JdbcConnectionFunctionFactory.class})
     public SelectRowCountFromTableFactory selectRowCountFromTableFactory() {
         return new SelectRowCountFromTableFactory();
     }

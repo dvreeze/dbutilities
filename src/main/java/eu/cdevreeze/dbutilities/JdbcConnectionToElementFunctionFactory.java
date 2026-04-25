@@ -21,13 +21,13 @@ import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import java.util.List;
 
 /**
- * {@link ConnectionFunctionFactory} creating {@link ConnectionToElementFunction} instances.
+ * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToElementFunction} instances.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface ConnectionToElementFunctionFactory extends ConnectionFunctionFactory<Element> {
+public interface JdbcConnectionToElementFunctionFactory extends JdbcConnectionFunctionFactory<Element> {
 
     @Override
-    ConnectionToElementFunction apply(List<String> args);
+    JdbcConnectionToElementFunction apply(List<String> args);
 }

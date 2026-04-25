@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.nio.file.Path;
@@ -28,7 +28,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public final class GetJsonQueryResultsFactory implements ConnectionToJsonObjectFunctionFactory {
+public final class GetJsonQueryResultsFactory implements JdbcConnectionToJsonObjectFunctionFactory {
 
     @Override
     public GetJsonQueryResults apply(List<String> args) {

@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import jakarta.json.JsonObject;
 import jakarta.json.spi.JsonProvider;
 
@@ -26,13 +26,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * {@link ConnectionToJsonObjectFunction} that selects the row count from a given table.
+ * {@link JdbcConnectionToJsonObjectFunction} that selects the row count from a given table.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *
  * @author Chris de Vreeze
  */
-public final class SelectRowCountFromTable implements ConnectionToJsonObjectFunction {
+public final class SelectRowCountFromTable implements JdbcConnectionToJsonObjectFunction {
 
     private final String tableName;
 

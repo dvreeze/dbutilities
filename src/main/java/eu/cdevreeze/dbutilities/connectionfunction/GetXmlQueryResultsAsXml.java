@@ -18,7 +18,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentParser;
@@ -32,14 +32,14 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * {@link ConnectionToElementFunction} that returns the results of an XML-returning query as XML.
+ * {@link JdbcConnectionToElementFunction} that returns the results of an XML-returning query as XML.
  * It is expected that each row has just one column, and that it is of type XML.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *
  * @author Chris de Vreeze
  */
-public final class GetXmlQueryResultsAsXml implements ConnectionToElementFunction {
+public final class GetXmlQueryResultsAsXml implements JdbcConnectionToElementFunction {
 
     private final GetQueryResultsAsXml delegate;
 

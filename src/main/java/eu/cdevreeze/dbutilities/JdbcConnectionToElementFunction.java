@@ -16,14 +16,13 @@
 
 package eu.cdevreeze.dbutilities;
 
-import java.sql.Connection;
-import java.util.function.Function;
+import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 
 /**
- * {@link java.util.function.Function} taking a {@link java.sql.Connection}.
+ * {@link JdbcConnectionFunction} returning an XML {@link Element}.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface ConnectionFunction<T> extends Function<Connection, T> {
+public interface JdbcConnectionToElementFunction extends JdbcConnectionFunction<Element> {
 }

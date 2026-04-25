@@ -16,14 +16,18 @@
 
 package eu.cdevreeze.dbutilities;
 
+import jakarta.json.JsonObject;
+
 import java.util.List;
-import java.util.function.Function;
 
 /**
- * Factory creating {@link ConnectionFunction} instances.
+ * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToJsonObjectFunction} instances.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface ConnectionFunctionFactory<T> extends Function<List<String>, ConnectionFunction<T>> {
+public interface JdbcConnectionToJsonObjectFunctionFactory extends JdbcConnectionFunctionFactory<JsonObject> {
+
+    @Override
+    JdbcConnectionToJsonObjectFunction apply(List<String> args);
 }

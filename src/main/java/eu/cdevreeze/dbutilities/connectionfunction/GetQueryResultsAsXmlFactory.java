@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.nio.file.Path;
@@ -28,7 +28,7 @@ import java.util.Objects;
  *
  * @author Chris de Vreeze
  */
-public final class GetQueryResultsAsXmlFactory implements ConnectionToElementFunctionFactory {
+public final class GetQueryResultsAsXmlFactory implements JdbcConnectionToElementFunctionFactory {
 
     @Override
     public GetQueryResultsAsXml apply(List<String> args) {

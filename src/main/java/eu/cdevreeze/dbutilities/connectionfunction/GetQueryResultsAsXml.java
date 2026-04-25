@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * {@link ConnectionToElementFunction} that returns the results of a query as XML.
+ * {@link JdbcConnectionToElementFunction} that returns the results of a query as XML.
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *

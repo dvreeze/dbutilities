@@ -18,7 +18,7 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import eu.cdevreeze.dbutilities.ConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.PreparedStatements;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
@@ -35,11 +35,11 @@ import java.util.stream.IntStream;
 import static eu.cdevreeze.yaidom4j.dom.immutabledom.Nodes.elem;
 
 /**
- * Abstract {@link ConnectionToElementFunction} that returns the results of a query as XML.
+ * Abstract {@link JdbcConnectionToElementFunction} that returns the results of a query as XML.
  *
  * @author Chris de Vreeze
  */
-public abstract class AbstractGetQueryResultsAsXml implements ConnectionToElementFunction {
+public abstract class AbstractGetQueryResultsAsXml implements JdbcConnectionToElementFunction {
 
     protected abstract String getQueryString();
 

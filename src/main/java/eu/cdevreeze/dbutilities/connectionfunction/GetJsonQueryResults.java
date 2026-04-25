@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.ConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
@@ -32,14 +32,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * {@link ConnectionToJsonObjectFunction} that returns the results of a JSON-returning query as JSON.
+ * {@link JdbcConnectionToJsonObjectFunction} that returns the results of a JSON-returning query as JSON.
  * It is expected that each row has just one column, and that it is of type "JSON object".
  * <p>
  * Instances are created by a dedicated factory object, and not by CDI injection.
  *
  * @author Chris de Vreeze
  */
-public final class GetJsonQueryResults implements ConnectionToJsonObjectFunction {
+public final class GetJsonQueryResults implements JdbcConnectionToJsonObjectFunction {
 
     private final GetQueryResults delegate;
 
