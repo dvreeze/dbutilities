@@ -26,12 +26,13 @@ import jakarta.enterprise.inject.Default;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import jakarta.enterprise.inject.spi.CDI;
+import jakarta.persistence.EntityAgent;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceConfiguration;
 import org.eclipse.microprofile.config.Config;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -72,11 +73,11 @@ public final class JdbcProgramReturningXml {
             String dataSourceName =
                     config.getOptionalValue("dataSourceName", String.class).orElseThrow();
 
-            Instance<DataSource> dataSourceInstance = CDI.current().select(DataSource.class, NamedLiteral.of(dataSourceName));
+            Instance<PersistenceConfiguration> persistenceConfigInstance = CDI.current().select(PersistenceConfiguration.class, NamedLiteral.of(dataSourceName));
 
             Preconditions.checkArgument(
-                    dataSourceInstance.isResolvable(),
-                    String.format("Could not resolve DataSource with name '%s'", dataSourceName)
+                    persistenceConfigInstance.isResolvable(),
+                    String.format("Could not resolve PersistenceConfiguration with name '%s'", dataSourceName)
             );
 
             Instance<JdbcConnectionToElementFunctionFactory> functionFactoryInstance =
@@ -91,10 +92,11 @@ public final class JdbcProgramReturningXml {
 
             // Do the actual work within a JDBC Connection
             Element result;
-            try (Connection conn = dataSourceInstance.get().getConnection()) {
-                result = function.apply(conn);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            try (EntityManagerFactory emf = persistenceConfigInstance.get().createEntityManagerFactory()) {
+                result = emf.callInTransaction(
+                        EntityAgent.class,
+                        entityAgent -> entityAgent.callWithConnection(function)
+                );
             }
 
             DocumentPrinter docPrinter = DocumentPrinters.instance();

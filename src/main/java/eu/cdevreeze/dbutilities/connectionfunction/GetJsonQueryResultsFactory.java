@@ -16,12 +16,9 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
-
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Factory of {@link GetJsonQueryResults} objects.
@@ -33,7 +30,7 @@ public final class GetJsonQueryResultsFactory implements JdbcConnectionToJsonObj
     @Override
     public GetJsonQueryResults apply(List<String> args) {
         Objects.checkIndex(0, args.size());
-        Path queryFile = Path.of(Objects.requireNonNull(args.get(0)));
+        Path queryFile = Path.of(Objects.requireNonNull(args.getFirst()));
         List<QueryParameter> queryParameters = QueryParameter.parseParameters(args.subList(1, args.size()));
         return new GetJsonQueryResults(queryFile, queryParameters);
     }

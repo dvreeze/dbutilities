@@ -16,6 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
@@ -26,10 +27,8 @@ import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentParsers;
 import org.xml.sax.InputSource;
 
 import javax.xml.namespace.QName;
-import java.io.StringReader;
-import java.nio.file.Path;
 import java.sql.Connection;
-import java.util.List;
+import java.sql.SQLException;
 
 /**
  * {@link JdbcConnectionToElementFunction} that returns the results of an XML-returning query as XML.
@@ -48,7 +47,7 @@ public final class GetXmlQueryResultsAsXml implements JdbcConnectionToElementFun
     }
 
     @Override
-    public Element apply(Connection connection) {
+    public Element apply(Connection connection) throws SQLException {
         Element rawResult = delegate.apply(connection);
 
         Preconditions.checkArgument(rawResult.name().equals(new QName("rows")));

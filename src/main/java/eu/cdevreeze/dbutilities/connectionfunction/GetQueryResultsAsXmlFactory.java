@@ -33,7 +33,7 @@ public final class GetQueryResultsAsXmlFactory implements JdbcConnectionToElemen
     @Override
     public GetQueryResultsAsXml apply(List<String> args) {
         Objects.checkIndex(0, args.size());
-        Path queryFile = Path.of(Objects.requireNonNull(args.get(0)));
+        Path queryFile = Path.of(Objects.requireNonNull(args.getFirst()));
         List<QueryParameter> queryParameters = QueryParameter.parseParameters(args.subList(1, args.size()));
         return new GetQueryResultsAsXml(queryFile, queryParameters);
     }

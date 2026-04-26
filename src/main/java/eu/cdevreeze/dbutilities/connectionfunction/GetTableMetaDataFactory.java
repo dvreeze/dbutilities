@@ -31,7 +31,7 @@ public final class GetTableMetaDataFactory implements JdbcConnectionToJsonObject
     @Override
     public GetTableMetaData apply(List<String> args) {
         Objects.checkIndex(0, args.size());
-        String tableName = Objects.requireNonNull(args.get(0));
+        String tableName = Objects.requireNonNull(args.getFirst());
         return new GetTableMetaData(tableName);
     }
 }

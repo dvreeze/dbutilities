@@ -16,6 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.PreparedStatements;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
@@ -26,9 +27,6 @@ import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 
 import java.sql.*;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 /**
  * Abstract {@link JdbcConnectionToJsonObjectFunction} that returns the results of a query as JSON.
@@ -42,8 +40,8 @@ public abstract class AbstractGetQueryResults implements JdbcConnectionToJsonObj
     protected abstract List<QueryParameter> getQueryParameters();
 
     @Override
-    public final JsonObject apply(Connection connection) {
-        // Unlike Json, JsonProvider does not involve a lookup each time it is used
+    public final JsonObject apply(Connection connection) throws SQLException {
+        // Unlike class Json, class JsonProvider does not involve a lookup each time it is used
         JsonProvider jsonProvider = JsonProvider.provider();
 
         try (PreparedStatement ps = connection.prepareStatement(getQueryString())) {
@@ -73,8 +71,6 @@ public abstract class AbstractGetQueryResults implements JdbcConnectionToJsonObj
                         .add("rows", rowsJsonArr)
                         .build();
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 }

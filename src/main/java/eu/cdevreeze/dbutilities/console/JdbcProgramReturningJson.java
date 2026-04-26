@@ -28,13 +28,14 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonWriter;
 import jakarta.json.JsonWriterFactory;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.persistence.EntityAgent;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceConfiguration;
 import org.eclipse.microprofile.config.Config;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
-import javax.sql.DataSource;
 import java.io.StringWriter;
-import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -73,11 +74,11 @@ public final class JdbcProgramReturningJson {
             String dataSourceName =
                     config.getOptionalValue("dataSourceName", String.class).orElseThrow();
 
-            Instance<DataSource> dataSourceInstance = CDI.current().select(DataSource.class, NamedLiteral.of(dataSourceName));
+            Instance<PersistenceConfiguration> persistenceConfigInstance = CDI.current().select(PersistenceConfiguration.class, NamedLiteral.of(dataSourceName));
 
             Preconditions.checkArgument(
-                    dataSourceInstance.isResolvable(),
-                    String.format("Could not resolve DataSource with name '%s'", dataSourceName)
+                    persistenceConfigInstance.isResolvable(),
+                    String.format("Could not resolve PersistenceConfiguration with name '%s'", dataSourceName)
             );
 
             Instance<JdbcConnectionToJsonObjectFunctionFactory> functionFactoryInstance =
@@ -92,10 +93,11 @@ public final class JdbcProgramReturningJson {
 
             // Do the actual work within a JDBC Connection
             JsonObject result;
-            try (Connection conn = dataSourceInstance.get().getConnection()) {
-                result = function.apply(conn);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            try (EntityManagerFactory emf = persistenceConfigInstance.get().createEntityManagerFactory()) {
+                result = emf.callInTransaction(
+                        EntityAgent.class,
+                        entityAgent -> entityAgent.callWithConnection(function)
+                );
             }
 
             StringWriter sw = new StringWriter();

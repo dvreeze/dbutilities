@@ -16,6 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
@@ -26,11 +27,6 @@ import eu.cdevreeze.yaidom4j.dom.immutabledom.Nodes;
 
 import javax.xml.namespace.QName;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 import static eu.cdevreeze.yaidom4j.dom.immutabledom.Nodes.elem;
 
@@ -46,7 +42,7 @@ public abstract class AbstractGetQueryResultsAsXml implements JdbcConnectionToEl
     protected abstract List<QueryParameter> getQueryParameters();
 
     @Override
-    public final Element apply(Connection connection) {
+    public final Element apply(Connection connection) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(getQueryString())) {
             PreparedStatements.setParameters(ps, getQueryParameters());
 
@@ -85,8 +81,6 @@ public abstract class AbstractGetQueryResultsAsXml implements JdbcConnectionToEl
                 }
                 return elem("rows").withChildren(ImmutableList.copyOf(rows));
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 }
