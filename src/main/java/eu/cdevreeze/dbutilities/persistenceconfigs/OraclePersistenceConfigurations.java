@@ -16,14 +16,12 @@
 
 package eu.cdevreeze.dbutilities.persistenceconfigs;
 
-import eu.cdevreeze.dbutilities.datasource.OracleDataSources;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.PersistenceConfiguration;
 import jakarta.persistence.PersistenceUnitTransactionType;
 import org.eclipse.microprofile.config.Config;
 
-import static jakarta.persistence.Persistence.ConnectionProperties.JDBC_DATASOURCE;
-import static jakarta.persistence.Persistence.ConnectionProperties.JDBC_DRIVER;
+import static jakarta.persistence.Persistence.ConnectionProperties.*;
 
 /**
  * Oracle {@link PersistenceConfiguration} factory.
@@ -37,12 +35,18 @@ public class OraclePersistenceConfigurations {
     }
 
     public static PersistenceConfiguration getPersistenceConfiguration(Config config) {
-        // TODO Set JDBC URL rather than dialect; and make it work
+        String serverName = config.getValue("oracle.serverName", String.class);
+        int portNumber = config.getValue("oracle.portNumber", Integer.class);
+        String serviceName = config.getValue("oracle.serviceName", String.class);
+        String jdbcUrl = String.format("jdbc:oracle:thin:@%s:%d:%s", serverName, portNumber, serviceName);
+
         return new PersistenceConfiguration("oracle")
                 .transactionType(PersistenceUnitTransactionType.RESOURCE_LOCAL)
                 .defaultToOneFetchType(FetchType.LAZY) // Just in case we use Entities
-                .property(JDBC_DATASOURCE, OracleDataSources.getDataSource(config))
+                // .property(JDBC_DATASOURCE, OracleDataSources.getDataSource(config))
                 .property(JDBC_DRIVER, "oracle.jdbc.driver.OracleDriver")
-                .property("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
+                .property(JDBC_URL, jdbcUrl)
+                .property(JDBC_USER, config.getValue("oracle.user", String.class))
+                .property(JDBC_PASSWORD, config.getValue("oracle.password", String.class));
     }
 }
