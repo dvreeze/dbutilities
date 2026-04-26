@@ -16,11 +16,8 @@
 
 package eu.cdevreeze.dbutilities.console;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.connectionfunction.GetQueryResultsAsXml;
-
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Program that calls {@link GetQueryResultsAsXml} and shows the result.

@@ -16,10 +16,9 @@
 
 package eu.cdevreeze.dbutilities.datasource;
 
+import module java.sql;
 import org.eclipse.microprofile.config.Config;
 import org.postgresql.ds.PGSimpleDataSource;
-
-import javax.sql.DataSource;
 
 /**
  * Postgresql {@link DataSource} factory.

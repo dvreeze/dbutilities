@@ -16,10 +16,9 @@
 
 package eu.cdevreeze.dbutilities.datasource;
 
+import module java.sql;
 import com.ibm.db2.jcc.DB2SimpleDataSource;
 import org.eclipse.microprofile.config.Config;
-
-import javax.sql.DataSource;
 
 /**
  * Db2 {@link DataSource} factory.

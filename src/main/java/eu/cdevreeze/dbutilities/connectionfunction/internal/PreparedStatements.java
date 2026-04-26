@@ -16,9 +16,8 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction.internal;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
+import module java.base;
+import module java.sql;
 
 /**
  * Support for setting parameters on a {@link java.sql.PreparedStatement}.

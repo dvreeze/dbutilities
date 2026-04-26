@@ -16,10 +16,8 @@
 
 package eu.cdevreeze.dbutilities.console;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.connectionfunction.SelectAllFromTable;
-
-import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Program that calls {@link SelectAllFromTable} and shows the result.

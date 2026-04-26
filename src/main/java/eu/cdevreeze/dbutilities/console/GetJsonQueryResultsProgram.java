@@ -16,11 +16,8 @@
 
 package eu.cdevreeze.dbutilities.console;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.connectionfunction.GetJsonQueryResults;
-
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Program that calls {@link GetJsonQueryResults} and shows the result.

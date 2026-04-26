@@ -16,8 +16,7 @@
 
 package eu.cdevreeze.dbutilities.function;
 
-import java.util.List;
-import java.util.function.Function;
+import module java.base;
 
 /**
  * Factory creating {@link JdbcConnectionFunction} instances.

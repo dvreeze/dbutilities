@@ -16,14 +16,10 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.sql;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
 import jakarta.json.JsonObject;
 import jakarta.json.spi.JsonProvider;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * {@link JdbcConnectionToJsonObjectFunction} that selects the row count from a given table.

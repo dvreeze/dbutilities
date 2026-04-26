@@ -16,12 +16,9 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction.internal;
 
+import module java.base;
+import module java.sql;
 import com.google.common.base.Preconditions;
-
-import java.sql.JDBCType;
-import java.sql.SQLType;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Parameter data to be set on a {@link java.sql.PreparedStatement}.

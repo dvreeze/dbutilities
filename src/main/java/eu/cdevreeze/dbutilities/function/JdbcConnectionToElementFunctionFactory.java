@@ -16,9 +16,8 @@
 
 package eu.cdevreeze.dbutilities.function;
 
+import module java.base;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
-
-import java.util.List;
 
 /**
  * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToElementFunction} instances.

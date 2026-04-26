@@ -17,6 +17,7 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import module java.base;
+import module java.sql;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
@@ -24,11 +25,6 @@ import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentParser;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentParsers;
-import org.xml.sax.InputSource;
-
-import javax.xml.namespace.QName;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * {@link JdbcConnectionToElementFunction} that returns the results of an XML-returning query as XML.

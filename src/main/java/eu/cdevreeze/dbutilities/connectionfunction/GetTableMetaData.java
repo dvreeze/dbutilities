@@ -16,17 +16,13 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
+import module java.sql;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
-
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Optional;
 
 /**
  * {@link JdbcConnectionToJsonObjectFunction} that retrieves metadata of a table in the database.

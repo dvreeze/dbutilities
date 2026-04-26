@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.function;
 
-import java.sql.Connection;
+import module java.sql;
 
 /**
  * {@link jakarta.persistence.ConnectionFunction} taking a {@link java.sql.Connection}.

@@ -16,13 +16,11 @@
 
 package eu.cdevreeze.dbutilities.datasource;
 
+import module java.base;
+import module java.sql;
 import com.google.common.base.Preconditions;
 import oracle.jdbc.datasource.impl.OracleDataSource;
 import org.eclipse.microprofile.config.Config;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.Optional;
 
 /**
  * Oracle {@link DataSource} factory.

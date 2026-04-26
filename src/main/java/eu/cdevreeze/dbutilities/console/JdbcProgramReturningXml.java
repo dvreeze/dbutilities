@@ -16,6 +16,7 @@
 
 package eu.cdevreeze.dbutilities.console;
 
+import module java.base;
 import com.google.common.base.Preconditions;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunctionFactory;
@@ -32,10 +33,6 @@ import jakarta.persistence.PersistenceConfiguration;
 import org.eclipse.microprofile.config.Config;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Console program using a {@link JdbcConnectionToElementFunction}. The first program argument

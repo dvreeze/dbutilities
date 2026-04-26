@@ -16,10 +16,8 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Factory of {@link GetTableMetaData} objects.

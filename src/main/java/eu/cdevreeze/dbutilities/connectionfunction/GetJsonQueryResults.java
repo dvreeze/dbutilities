@@ -17,6 +17,7 @@
 package eu.cdevreeze.dbutilities.connectionfunction;
 
 import module java.base;
+import module java.sql;
 import com.google.common.base.Preconditions;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
@@ -25,9 +26,6 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReaderFactory;
 import jakarta.json.JsonString;
 import jakarta.json.spi.JsonProvider;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * {@link JdbcConnectionToJsonObjectFunction} that returns the results of a JSON-returning query as JSON.

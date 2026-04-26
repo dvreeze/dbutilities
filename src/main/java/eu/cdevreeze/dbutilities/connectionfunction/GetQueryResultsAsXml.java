@@ -16,14 +16,9 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
-
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
 
 /**
  * {@link JdbcConnectionToElementFunction} that returns the results of a query as XML.

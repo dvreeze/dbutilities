@@ -16,6 +16,7 @@
 
 package eu.cdevreeze.dbutilities.console;
 
+import module java.base;
 import com.google.common.base.Preconditions;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
@@ -34,9 +35,6 @@ import jakarta.persistence.PersistenceConfiguration;
 import org.eclipse.microprofile.config.Config;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-
-import java.io.StringWriter;
-import java.util.*;
 
 /**
  * Console program using a {@link JdbcConnectionToJsonObjectFunction}. The first program argument

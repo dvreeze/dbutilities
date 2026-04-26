@@ -16,12 +16,9 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
-
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Factory of {@link GetQueryResults} objects.

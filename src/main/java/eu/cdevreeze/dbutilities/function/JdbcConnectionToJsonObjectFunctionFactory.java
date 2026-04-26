@@ -16,9 +16,8 @@
 
 package eu.cdevreeze.dbutilities.function;
 
+import module java.base;
 import jakarta.json.JsonObject;
-
-import java.util.List;
 
 /**
  * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToJsonObjectFunction} instances.

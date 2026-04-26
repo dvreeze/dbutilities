@@ -16,10 +16,9 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
+import module java.base;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
 import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
-
-import java.util.List;
 
 /**
  * {@link JdbcConnectionToElementFunction} that selects all data from a given table.
