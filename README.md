@@ -313,3 +313,4 @@ in case of ORA-12505 errors. Also see
 ## Reference material
 
 [JPA 4.0 API doc](https://jakarta.ee/specifications/persistence/4.0/apidocs/jakarta.persistence/module-summary)
+[JDBC URLs](https://www.baeldung.com/java-jdbc-url-format)
