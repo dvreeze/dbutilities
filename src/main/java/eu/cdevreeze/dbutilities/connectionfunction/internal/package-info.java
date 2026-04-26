@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities;
-
-import java.sql.Connection;
-
 /**
- * {@link jakarta.persistence.ConnectionFunction} taking a {@link java.sql.Connection}.
+ * Internals used by implementations of {@link eu.cdevreeze.dbutilities.function.JdbcConnectionFunction}.
  *
  * @author Chris de Vreeze
  */
-@FunctionalInterface
-public interface JdbcConnectionFunction<T> extends jakarta.persistence.ConnectionFunction<Connection, T> {
-}
+@NullMarked
+package eu.cdevreeze.dbutilities.connectionfunction.internal;
+
+import org.jspecify.annotations.NullMarked;

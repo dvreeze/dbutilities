@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities;
+package eu.cdevreeze.dbutilities.function;
 
-import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
+import java.util.List;
+import java.util.function.Function;
 
 /**
- * {@link JdbcConnectionFunction} returning an XML {@link Element}.
+ * Factory creating {@link JdbcConnectionFunction} instances.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface JdbcConnectionToElementFunction extends JdbcConnectionFunction<Element> {
+public interface JdbcConnectionFunctionFactory<T> extends Function<List<String>, JdbcConnectionFunction<T>> {
 }

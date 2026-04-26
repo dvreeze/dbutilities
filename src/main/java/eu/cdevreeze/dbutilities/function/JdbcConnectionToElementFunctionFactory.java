@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities;
+package eu.cdevreeze.dbutilities.function;
 
-import jakarta.json.JsonObject;
+import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 
 import java.util.List;
 
 /**
- * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToJsonObjectFunction} instances.
+ * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToElementFunction} instances.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface JdbcConnectionToJsonObjectFunctionFactory extends JdbcConnectionFunctionFactory<JsonObject> {
+public interface JdbcConnectionToElementFunctionFactory extends JdbcConnectionFunctionFactory<Element> {
 
     @Override
-    JdbcConnectionToJsonObjectFunction apply(List<String> args);
+    JdbcConnectionToElementFunction apply(List<String> args);
 }

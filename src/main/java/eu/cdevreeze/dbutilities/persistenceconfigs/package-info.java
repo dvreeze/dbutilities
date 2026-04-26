@@ -14,24 +14,12 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities.connectionfunction;
-
-import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
-
-import java.util.List;
-import java.util.Objects;
-
 /**
- * Factory of {@link GetTableMetaData} objects.
+ * Several {@link jakarta.persistence.PersistenceConfiguration} factories.
  *
  * @author Chris de Vreeze
  */
-public final class GetTableMetaDataFactory implements JdbcConnectionToJsonObjectFunctionFactory {
+@NullMarked
+package eu.cdevreeze.dbutilities.persistenceconfigs;
 
-    @Override
-    public GetTableMetaData apply(List<String> args) {
-        Objects.checkIndex(0, args.size());
-        String tableName = Objects.requireNonNull(args.getFirst());
-        return new GetTableMetaData(tableName);
-    }
-}
+import org.jspecify.annotations.NullMarked;

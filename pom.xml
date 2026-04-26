@@ -66,6 +66,11 @@
             <version>2.1.3</version>
         </dependency>
         <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>eu.cdevreeze.yaidom4j</groupId>
             <artifactId>yaidom4j</artifactId>
             <version>0.16.0</version>

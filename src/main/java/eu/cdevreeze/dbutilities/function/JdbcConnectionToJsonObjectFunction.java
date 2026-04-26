@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities.connectionfunction;
+package eu.cdevreeze.dbutilities.function;
 
-import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
-
-import java.util.List;
-import java.util.Objects;
+import jakarta.json.JsonObject;
 
 /**
- * Factory of {@link GetTableMetaData} objects.
+ * {@link JdbcConnectionFunction} returning an XML {@link JsonObject}.
  *
  * @author Chris de Vreeze
  */
-public final class GetTableMetaDataFactory implements JdbcConnectionToJsonObjectFunctionFactory {
-
-    @Override
-    public GetTableMetaData apply(List<String> args) {
-        Objects.checkIndex(0, args.size());
-        String tableName = Objects.requireNonNull(args.getFirst());
-        return new GetTableMetaData(tableName);
-    }
+@FunctionalInterface
+public interface JdbcConnectionToJsonObjectFunction extends JdbcConnectionFunction<JsonObject> {
 }

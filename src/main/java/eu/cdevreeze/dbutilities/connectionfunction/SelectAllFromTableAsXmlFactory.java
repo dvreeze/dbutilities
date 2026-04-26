@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunctionFactory;
 
 import java.util.List;
 import java.util.Objects;

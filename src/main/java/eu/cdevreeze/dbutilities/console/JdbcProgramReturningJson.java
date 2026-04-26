@@ -17,8 +17,8 @@
 package eu.cdevreeze.dbutilities.console;
 
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
 import jakarta.enterprise.inject.Default;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;

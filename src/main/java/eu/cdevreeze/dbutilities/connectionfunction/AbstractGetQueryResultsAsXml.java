@@ -19,9 +19,9 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 import module java.base;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.PreparedStatements;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Nodes;
 

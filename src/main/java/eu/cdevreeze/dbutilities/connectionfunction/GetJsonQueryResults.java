@@ -18,8 +18,8 @@ package eu.cdevreeze.dbutilities.connectionfunction;
 
 import module java.base;
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReaderFactory;

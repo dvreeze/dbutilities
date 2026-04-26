@@ -27,4 +27,7 @@
  *
  * @author Chris de Vreeze
  */
+@NullMarked
 package eu.cdevreeze.dbutilities.cdiwiring;
+
+import org.jspecify.annotations.NullMarked;

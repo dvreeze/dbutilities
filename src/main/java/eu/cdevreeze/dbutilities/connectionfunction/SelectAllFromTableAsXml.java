@@ -16,8 +16,8 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
 
 import java.util.List;
 

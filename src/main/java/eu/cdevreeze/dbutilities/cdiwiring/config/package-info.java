@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities;
-
-import jakarta.json.JsonObject;
-
 /**
- * {@link JdbcConnectionFunction} returning an XML {@link JsonObject}.
+ * CDI wiring of {@link org.eclipse.microprofile.config.Config}, turning it into a "CDI managed bean".
  *
  * @author Chris de Vreeze
  */
-@FunctionalInterface
-public interface JdbcConnectionToJsonObjectFunction extends JdbcConnectionFunction<JsonObject> {
-}
+@NullMarked
+package eu.cdevreeze.dbutilities.cdiwiring.config;
+
+import org.jspecify.annotations.NullMarked;

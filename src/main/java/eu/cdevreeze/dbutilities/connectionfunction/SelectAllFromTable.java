@@ -16,8 +16,8 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
 import eu.cdevreeze.dbutilities.connectionfunction.internal.QueryParameter;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
 
 import java.util.List;
 

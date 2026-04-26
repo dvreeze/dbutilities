@@ -16,10 +16,10 @@
 
 package eu.cdevreeze.dbutilities.cdiwiring.connectionfunction;
 
-import eu.cdevreeze.dbutilities.JdbcConnectionFunctionFactory;
-import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
 import eu.cdevreeze.dbutilities.connectionfunction.*;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionFunctionFactory;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.Typed;

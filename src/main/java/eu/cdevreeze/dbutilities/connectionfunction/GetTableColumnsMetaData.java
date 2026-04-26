@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;

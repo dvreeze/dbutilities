@@ -16,7 +16,7 @@
 
 package eu.cdevreeze.dbutilities.connectionfunction;
 
-import eu.cdevreeze.dbutilities.JdbcConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
 
 import java.util.List;
 import java.util.Objects;

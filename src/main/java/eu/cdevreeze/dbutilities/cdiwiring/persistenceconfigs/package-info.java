@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities;
-
-import java.util.List;
-import java.util.function.Function;
-
 /**
- * Factory creating {@link JdbcConnectionFunction} instances.
+ * CDI wiring of {@link jakarta.persistence.PersistenceConfiguration} factories.
  *
  * @author Chris de Vreeze
  */
-@FunctionalInterface
-public interface JdbcConnectionFunctionFactory<T> extends Function<List<String>, JdbcConnectionFunction<T>> {
-}
+@NullMarked
+package eu.cdevreeze.dbutilities.cdiwiring.persistenceconfigs;
+
+import org.jspecify.annotations.NullMarked;

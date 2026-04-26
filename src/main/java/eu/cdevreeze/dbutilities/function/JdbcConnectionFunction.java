@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities;
+package eu.cdevreeze.dbutilities.function;
 
-import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
-
-import java.util.List;
+import java.sql.Connection;
 
 /**
- * {@link JdbcConnectionFunctionFactory} creating {@link JdbcConnectionToElementFunction} instances.
+ * {@link jakarta.persistence.ConnectionFunction} taking a {@link java.sql.Connection}.
  *
  * @author Chris de Vreeze
  */
 @FunctionalInterface
-public interface JdbcConnectionToElementFunctionFactory extends JdbcConnectionFunctionFactory<Element> {
-
-    @Override
-    JdbcConnectionToElementFunction apply(List<String> args);
+public interface JdbcConnectionFunction<T> extends jakarta.persistence.ConnectionFunction<Connection, T> {
 }

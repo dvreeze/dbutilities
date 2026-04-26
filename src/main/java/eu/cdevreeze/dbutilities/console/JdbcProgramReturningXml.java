@@ -17,8 +17,8 @@
 package eu.cdevreeze.dbutilities.console;
 
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunction;
-import eu.cdevreeze.dbutilities.JdbcConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
+import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunctionFactory;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentPrinter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentPrinters;
