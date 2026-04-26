@@ -13,6 +13,14 @@ the first milestone of the upcoming [JPA 4.0](https://jakarta.ee/specifications/
 More than ever before Hibernate 8 and JPA 4.0 offer first-class support for native SQL. Hibernate's
 `StatelessSession` is also making it to that upcoming standard!
 
+Note: the code base uses Java 25 and its module imports. As a consequence, "mvn clean verify" may fail,
+depending on the Maven version used. Consider using Maven via [sdkman](https://sdkman.io/), and
+run this Maven command as follows:
+
+```bash
+~/.sdkman/candidates/maven/3.9.15/bin/mvn clean verify
+```
+
 ## Running containerized database servers
 
 To try out database servers of different vendors, it helps to start with Docker images of those database
