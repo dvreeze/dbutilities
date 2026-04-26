@@ -36,21 +36,21 @@ public class PersistenceConfigWiring {
     @Produces
     @Named("db2")
     @ApplicationScoped
-    public PersistenceConfiguration getDb2DataSource(Config config) {
+    public PersistenceConfiguration getDb2PersistenceConfiguration(Config config) {
         return Db2PersistenceConfigurations.getPersistenceConfiguration(config);
     }
 
     @Produces
     @Named("oracle")
     @ApplicationScoped
-    public PersistenceConfiguration getOracleDataSource(Config config) {
+    public PersistenceConfiguration getOraclePersistenceConfiguration(Config config) {
         return OraclePersistenceConfigurations.getPersistenceConfiguration(config);
     }
 
     @Produces
     @Named("postgresql")
     @ApplicationScoped
-    public PersistenceConfiguration getPostgresqlDataSource(Config config) {
+    public PersistenceConfiguration getPostgresqlPersistenceConfiguration(Config config) {
         return PostgresqlPersistenceConfigurations.getPersistenceConfiguration(config);
     }
 }
