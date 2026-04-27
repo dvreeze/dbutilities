@@ -33,7 +33,7 @@ public final class SelectAllFromTableProgram {
         String tableName = args[0];
         Objects.requireNonNull(tableName);
 
-        JdbcProgramReturningJson.run(
+        EntityAgentProgramReturningJson.run(
                 SelectAllFromTable.class.getSimpleName(),
                 Arrays.stream(args).toList()
         );

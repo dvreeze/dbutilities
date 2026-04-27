@@ -33,7 +33,7 @@ public final class GetTableColumnsMetaDataProgram {
         String tableName = args[0];
         Objects.requireNonNull(tableName);
 
-        JdbcProgramReturningJson.run(
+        EntityAgentProgramReturningJson.run(
                 GetTableColumnsMetaData.class.getSimpleName(),
                 Arrays.stream(args).toList()
         );

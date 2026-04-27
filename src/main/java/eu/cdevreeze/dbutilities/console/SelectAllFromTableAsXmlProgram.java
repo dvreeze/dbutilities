@@ -33,7 +33,7 @@ public final class SelectAllFromTableAsXmlProgram {
         String tableName = args[0];
         Objects.requireNonNull(tableName);
 
-        JdbcProgramReturningXml.run(
+        EntityAgentProgramReturningXml.run(
                 SelectAllFromTableAsXml.class.getSimpleName(),
                 Arrays.stream(args).toList()
         );

@@ -44,7 +44,7 @@ import org.jboss.weld.environment.se.WeldContainer;
  *
  * @author Chris de Vreeze
  */
-public final class JdbcProgramReturningJson {
+public final class EntityAgentProgramReturningJson {
 
     public static void main(String[] args) {
         Objects.checkIndex(0, args.length);
@@ -92,10 +92,7 @@ public final class JdbcProgramReturningJson {
             // Do the actual work within a JDBC Connection
             JsonObject result;
             try (EntityManagerFactory emf = persistenceConfigInstance.get().createEntityManagerFactory()) {
-                result = emf.callInTransaction(
-                        EntityAgent.class,
-                        function
-                );
+                result = emf.callInTransaction(EntityAgent.class, function);
             }
 
             StringWriter sw = new StringWriter();

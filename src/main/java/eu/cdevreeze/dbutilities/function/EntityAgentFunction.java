@@ -21,6 +21,8 @@ import jakarta.persistence.EntityAgent;
 
 /**
  * {@link java.util.function.Function} taking a {@link jakarta.persistence.EntityAgent}.
+ * <p>
+ * It can be passed to method {@link jakarta.persistence.EntityManagerFactory#callInTransaction(Class, Function)}.
  *
  * @author Chris de Vreeze
  */

@@ -33,7 +33,7 @@ public final class GetJsonQueryResultsProgram {
         Path queryFile = Path.of(args[0]);
         Objects.requireNonNull(queryFile);
 
-        JdbcProgramReturningJson.run(
+        EntityAgentProgramReturningJson.run(
                 GetJsonQueryResults.class.getSimpleName(),
                 Arrays.stream(args).toList()
         );

@@ -33,7 +33,7 @@ public final class GetQueryResultsAsXmlProgram {
         Path queryFile = Path.of(args[0]);
         Objects.requireNonNull(queryFile);
 
-        JdbcProgramReturningXml.run(
+        EntityAgentProgramReturningXml.run(
                 GetQueryResultsAsXml.class.getSimpleName(),
                 Arrays.stream(args).toList()
         );

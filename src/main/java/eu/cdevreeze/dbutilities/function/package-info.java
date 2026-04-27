@@ -16,7 +16,7 @@
 
 /**
  * Core abstractions, in particular {@link eu.cdevreeze.dbutilities.function.EntityAgentFunction},
- * which is a JPA {@link java.util.function.Function} taking an {@link jakarta.persistence.EntityAgent}.
+ * which is a {@link java.util.function.Function} taking a JPA {@link jakarta.persistence.EntityAgent}.
  * <p>
  * This package has no dependencies on other packages in this project.
  *

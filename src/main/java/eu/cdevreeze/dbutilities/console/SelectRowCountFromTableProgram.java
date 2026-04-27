@@ -33,7 +33,7 @@ public final class SelectRowCountFromTableProgram {
         String tableName = args[0];
         Objects.requireNonNull(tableName);
 
-        JdbcProgramReturningJson.run(
+        EntityAgentProgramReturningJson.run(
                 SelectRowCountFromTable.class.getSimpleName(),
                 Arrays.stream(args).toList()
         );
