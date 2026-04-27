@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.entityagentfunction;
 
 import module java.base;
-import module java.sql;
+import module java.xml;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import eu.cdevreeze.dbutilities.entityagentfunction.internal.QueryParameter;
