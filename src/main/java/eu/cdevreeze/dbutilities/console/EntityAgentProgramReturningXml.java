@@ -46,14 +46,14 @@ public final class EntityAgentProgramReturningXml {
 
     public static void main(String[] args) {
         Objects.checkIndex(0, args.length);
-        String connectionFunctionName = args[0];
+        String entityAgentFunctionName = args[0];
 
         List<String> factoryArgs = Arrays.stream(args).skip(1).toList();
 
-        run(connectionFunctionName, factoryArgs);
+        run(entityAgentFunctionName, factoryArgs);
     }
 
-    public static void run(String connectionFunctionName, List<String> factoryArgs) {
+    public static void run(String entityAgentFunctionName, List<String> factoryArgs) {
         Weld weld = new Weld();
 
         try (WeldContainer weldContainer = weld.initialize()) {
@@ -78,16 +78,16 @@ public final class EntityAgentProgramReturningXml {
             );
 
             Instance<EntityAgentToElementFunctionFactory> functionFactoryInstance =
-                    CDI.current().select(EntityAgentToElementFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
+                    CDI.current().select(EntityAgentToElementFunctionFactory.class, NamedLiteral.of(entityAgentFunctionName));
 
             Preconditions.checkArgument(
                     functionFactoryInstance.isResolvable(),
-                    String.format("Could not resolve function with name '%s'", connectionFunctionName)
+                    String.format("Could not resolve function with name '%s'", entityAgentFunctionName)
             );
 
             EntityAgentToElementFunction function = functionFactoryInstance.get().apply(factoryArgs);
 
-            // Do the actual work within a JDBC Connection
+            // Do the actual work within a JPA EntityAgent
             Element result;
             try (EntityManagerFactory emf = persistenceConfigInstance.get().createEntityManagerFactory()) {
                 result = emf.callInTransaction(EntityAgent.class, function);
