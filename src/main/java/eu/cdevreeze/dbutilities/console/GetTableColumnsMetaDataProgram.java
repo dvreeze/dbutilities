@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
-import eu.cdevreeze.dbutilities.connectionfunction.GetTableColumnsMetaData;
+import eu.cdevreeze.dbutilities.entityagentfunction.GetTableColumnsMetaData;
 
 /**
  * Program that calls {@link GetTableColumnsMetaData} and shows the result.

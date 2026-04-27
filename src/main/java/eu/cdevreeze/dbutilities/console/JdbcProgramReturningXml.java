@@ -18,8 +18,8 @@ package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunction;
-import eu.cdevreeze.dbutilities.function.JdbcConnectionToElementFunctionFactory;
+import eu.cdevreeze.dbutilities.function.EntityAgentToElementFunction;
+import eu.cdevreeze.dbutilities.function.EntityAgentToElementFunctionFactory;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.Element;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentPrinter;
 import eu.cdevreeze.yaidom4j.dom.immutabledom.jaxpinterop.DocumentPrinters;
@@ -35,10 +35,10 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
 /**
- * Console program using a {@link JdbcConnectionToElementFunction}. The first program argument
- * is the name of the {@link JdbcConnectionToElementFunction} to create and run,
- * and the remaining program arguments are passed to the {@link JdbcConnectionToElementFunctionFactory}
- * to create a {@link JdbcConnectionToElementFunction}, which is subsequently run.
+ * Console program using a {@link EntityAgentToElementFunction}. The first program argument
+ * is the name of the {@link EntityAgentToElementFunction} to create and run,
+ * and the remaining program arguments are passed to the {@link EntityAgentToElementFunctionFactory}
+ * to create a {@link EntityAgentToElementFunction}, which is subsequently run.
  *
  * @author Chris de Vreeze
  */
@@ -77,22 +77,22 @@ public final class JdbcProgramReturningXml {
                     String.format("Could not resolve PersistenceConfiguration with name '%s'", dataSourceName)
             );
 
-            Instance<JdbcConnectionToElementFunctionFactory> functionFactoryInstance =
-                    CDI.current().select(JdbcConnectionToElementFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
+            Instance<EntityAgentToElementFunctionFactory> functionFactoryInstance =
+                    CDI.current().select(EntityAgentToElementFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
 
             Preconditions.checkArgument(
                     functionFactoryInstance.isResolvable(),
                     String.format("Could not resolve function with name '%s'", connectionFunctionName)
             );
 
-            JdbcConnectionToElementFunction function = functionFactoryInstance.get().apply(factoryArgs);
+            EntityAgentToElementFunction function = functionFactoryInstance.get().apply(factoryArgs);
 
             // Do the actual work within a JDBC Connection
             Element result;
             try (EntityManagerFactory emf = persistenceConfigInstance.get().createEntityManagerFactory()) {
                 result = emf.callInTransaction(
                         EntityAgent.class,
-                        entityAgent -> entityAgent.callWithConnection(function)
+                        function
                 );
             }
 

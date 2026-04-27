@@ -15,7 +15,7 @@
  */
 
 /**
- * Console programs running implementations of {@link eu.cdevreeze.dbutilities.function.JdbcConnectionFunction}.
+ * Console programs running implementations of {@link eu.cdevreeze.dbutilities.function.EntityAgentFunction}.
  *
  * @author Chris de Vreeze
  */

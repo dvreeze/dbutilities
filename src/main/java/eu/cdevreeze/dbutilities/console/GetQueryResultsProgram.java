@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
-import eu.cdevreeze.dbutilities.connectionfunction.GetQueryResults;
+import eu.cdevreeze.dbutilities.entityagentfunction.GetQueryResults;
 
 /**
  * Program that calls {@link GetQueryResults} and shows the result.

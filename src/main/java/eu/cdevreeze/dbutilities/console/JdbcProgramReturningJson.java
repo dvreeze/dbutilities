@@ -18,8 +18,8 @@ package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
 import com.google.common.base.Preconditions;
-import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunction;
-import eu.cdevreeze.dbutilities.function.JdbcConnectionToJsonObjectFunctionFactory;
+import eu.cdevreeze.dbutilities.function.EntityAgentToJsonObjectFunction;
+import eu.cdevreeze.dbutilities.function.EntityAgentToJsonObjectFunctionFactory;
 import jakarta.enterprise.inject.Default;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
@@ -37,10 +37,10 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
 /**
- * Console program using a {@link JdbcConnectionToJsonObjectFunction}. The first program argument
- * is the name of the {@link JdbcConnectionToJsonObjectFunction} to create and run,
- * and the remaining program arguments are passed to the {@link JdbcConnectionToJsonObjectFunctionFactory}
- * to create a {@link JdbcConnectionToJsonObjectFunction}, which is subsequently run.
+ * Console program using a {@link EntityAgentToJsonObjectFunction}. The first program argument
+ * is the name of the {@link EntityAgentToJsonObjectFunction} to create and run,
+ * and the remaining program arguments are passed to the {@link EntityAgentToJsonObjectFunctionFactory}
+ * to create a {@link EntityAgentToJsonObjectFunction}, which is subsequently run.
  *
  * @author Chris de Vreeze
  */
@@ -79,22 +79,22 @@ public final class JdbcProgramReturningJson {
                     String.format("Could not resolve PersistenceConfiguration with name '%s'", dataSourceName)
             );
 
-            Instance<JdbcConnectionToJsonObjectFunctionFactory> functionFactoryInstance =
-                    CDI.current().select(JdbcConnectionToJsonObjectFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
+            Instance<EntityAgentToJsonObjectFunctionFactory> functionFactoryInstance =
+                    CDI.current().select(EntityAgentToJsonObjectFunctionFactory.class, NamedLiteral.of(connectionFunctionName));
 
             Preconditions.checkArgument(
                     functionFactoryInstance.isResolvable(),
                     String.format("Could not resolve function with name '%s'", connectionFunctionName)
             );
 
-            JdbcConnectionToJsonObjectFunction function = functionFactoryInstance.get().apply(factoryArgs);
+            EntityAgentToJsonObjectFunction function = functionFactoryInstance.get().apply(factoryArgs);
 
             // Do the actual work within a JDBC Connection
             JsonObject result;
             try (EntityManagerFactory emf = persistenceConfigInstance.get().createEntityManagerFactory()) {
                 result = emf.callInTransaction(
                         EntityAgent.class,
-                        entityAgent -> entityAgent.callWithConnection(function)
+                        function
                 );
             }
 

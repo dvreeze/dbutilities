@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities.console;
+package eu.cdevreeze.dbutilities.entityagentfunction;
 
 import module java.base;
-import eu.cdevreeze.dbutilities.entityagentfunction.SelectAllFromTableAsXml;
+import eu.cdevreeze.dbutilities.function.EntityAgentToJsonObjectFunctionFactory;
 
 /**
- * Program that calls {@link SelectAllFromTableAsXml} and shows the result.
- * <p>
- * The only program argument is the table name.
+ * Factory of {@link SelectAllFromTable} objects.
  *
  * @author Chris de Vreeze
  */
-public final class SelectAllFromTableAsXmlProgram {
+public final class SelectAllFromTableFactory implements EntityAgentToJsonObjectFunctionFactory {
 
-    public static void main(String... args) {
-        Objects.checkIndex(0, args.length);
-        String tableName = args[0];
-        Objects.requireNonNull(tableName);
-
-        JdbcProgramReturningXml.run(
-                SelectAllFromTableAsXml.class.getSimpleName(),
-                Arrays.stream(args).toList()
-        );
+    @Override
+    public SelectAllFromTable apply(List<String> args) {
+        Objects.checkIndex(0, args.size());
+        String tableName = Objects.requireNonNull(args.getFirst());
+        return new SelectAllFromTable(tableName);
     }
 }

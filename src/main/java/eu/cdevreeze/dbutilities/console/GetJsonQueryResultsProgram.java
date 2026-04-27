@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
-import eu.cdevreeze.dbutilities.connectionfunction.GetJsonQueryResults;
+import eu.cdevreeze.dbutilities.entityagentfunction.GetJsonQueryResults;
 
 /**
  * Program that calls {@link GetJsonQueryResults} and shows the result.

@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
-import eu.cdevreeze.dbutilities.connectionfunction.GetXmlQueryResultsAsXml;
+import eu.cdevreeze.dbutilities.entityagentfunction.GetXmlQueryResultsAsXml;
 
 /**
  * Program that calls {@link GetXmlQueryResultsAsXml} and shows the result.

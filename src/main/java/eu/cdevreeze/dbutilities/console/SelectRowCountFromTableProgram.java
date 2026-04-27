@@ -17,7 +17,7 @@
 package eu.cdevreeze.dbutilities.console;
 
 import module java.base;
-import eu.cdevreeze.dbutilities.connectionfunction.SelectRowCountFromTable;
+import eu.cdevreeze.dbutilities.entityagentfunction.SelectRowCountFromTable;
 
 /**
  * Program that calls {@link SelectRowCountFromTable} and shows the result.

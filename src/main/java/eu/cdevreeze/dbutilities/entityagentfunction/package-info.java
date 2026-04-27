@@ -14,28 +14,12 @@
  * limitations under the License.
  */
 
-package eu.cdevreeze.dbutilities.console;
-
-import module java.base;
-import eu.cdevreeze.dbutilities.entityagentfunction.GetTableMetaData;
-
 /**
- * Program that calls {@link GetTableMetaData} and shows the result.
- * <p>
- * The only program argument is the table name.
+ * Implementations of {@link eu.cdevreeze.dbutilities.function.EntityAgentFunction}.
  *
  * @author Chris de Vreeze
  */
-public final class GetTableMetaDataProgram {
+@NullMarked
+package eu.cdevreeze.dbutilities.entityagentfunction;
 
-    public static void main(String... args) {
-        Objects.checkIndex(0, args.length);
-        String tableName = args[0];
-        Objects.requireNonNull(tableName);
-
-        JdbcProgramReturningJson.run(
-                GetTableMetaData.class.getSimpleName(),
-                Arrays.stream(args).toList()
-        );
-    }
-}
+import org.jspecify.annotations.NullMarked;
